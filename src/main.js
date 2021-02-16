@@ -8,11 +8,20 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import '../src/assets/css/style.css'
 
+// Vuex Store
+import store from './store/index'
+//  Sweet Alert
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
+
+Vue.use(VueSweetalert2)
+
 Vue.config.productionTip = false
 // Use Bootstrap & Bootstrap-Vue
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
