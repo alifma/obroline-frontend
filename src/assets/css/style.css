@@ -1,0 +1,37 @@
+/* Color Variable */
+:root {
+  --main-theme: #7E98DF;
+  --main-hover: #4870db;
+}
+
+/* Scrolling Behaviour */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Set font for all component */
+#app {
+  font-family: 'Rubik', sans-serif !important;
+}
+
+.text-main {
+  color: var(--main-theme);
+}
+.btn-main {
+  background-color: var(--main-theme);
+  color: #fff;
+}
+.btn-main:hover {
+  background-color: var(--main-hover);
+  color:#fff;
+  transition: all 0.5s;
+}
+.btn-sub{
+  border: 2px solid var(--main-theme);
+  color: var(--main-theme);
+}
+.btn-sub:hover {
+  background-color:#fefefe;
+  color: var(--main-theme);
+  transition: all 0.5s;
+}
