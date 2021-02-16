@@ -1,18 +1,37 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="home container">
+    <div class="card mt-5">
+      <div class="card-header text-center"><h1>Halaman utama</h1></div>
+      <div class="card-body">
+        <h1>Content</h1>
+      </div>
+      <div class="card-footer text-center">
+        <button @click="logout()" class="btn btn-main">Logout</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import { mapActions } from 'vuex'
+import { obrolinemixin } from '../helper/mixin'
 export default {
+  mixins: [obrolinemixin],
   name: 'Home',
-  components: {
-    HelloWorld
+  methods: {
+    ...mapActions({
+      actionLogout: 'auth/logout'
+    }),
+    logout () {
+      this.actionLogout()
+        .then((response) => {
+          this.swalAlert('Logout Success', 'You Are Logged Out', 'success')
+          this.$router.push('/login')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
 }
 </script>

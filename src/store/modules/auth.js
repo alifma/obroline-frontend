@@ -33,20 +33,14 @@ const moduleAuth = {
     },
     logout (context) {
       return new Promise((resolve, reject) => {
-        // localStorage.removeItem('token')
-        // localStorage.removeItem('access')
-        // localStorage.removeItem('name')
-        // localStorage.removeItem('id')
-        // context.commit('setToken', null)
-        // context.commit('setAccess', null)
-        // context.commit('setName', '')
-        // context.commit('setId', null)
+        localStorage.removeItem('token')
+        context.commit('setLoginData', {})
         resolve(true)
       })
     },
     register (context, data) {
       return new Promise((resolve, reject) => {
-        axios.post(`${context.rootState.apiURL}/login`, data)
+        axios.post(`${context.rootState.apiURL}/register`, data)
           .then((response) => {
             resolve(response)
           })
