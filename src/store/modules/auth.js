@@ -42,7 +42,7 @@ const moduleAuth = {
       return new Promise((resolve, reject) => {
         axios.post(`${context.rootState.apiURL}/register`, data)
           .then((response) => {
-            resolve(response)
+            resolve(response.data)
           })
           .catch((err) => {
             reject(err)

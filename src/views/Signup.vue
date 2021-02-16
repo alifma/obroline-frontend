@@ -9,21 +9,21 @@
             <router-link to="/login" class="float-left text-main mb-0"> <b-icon-arrow-left></b-icon-arrow-left> </router-link>
             <h4 class="text-main text-center my-3">Register</h4>
             <p class="mt-4">Let's create your account!</p>
-            <form action="" class="my-4">
+            <form @submit.prevent="register()" action="" class="my-4">
               <div class="form-group mb-4">
                 <label class="text-secondary">Name</label>
-                <input type="text" class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
+                <input required type="text" v-model="holderRegister.name" class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
                   style="border-bottom:2px solid black" value="Admin Obroline">
               </div>
               <div class="form-group mb-4">
                 <label class="text-secondary">Email</label>
-                <input type="email" class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
+                <input required type="email" v-model="holderRegister.email" class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
                   style="border-bottom:2px solid black" value="obroline@gmail.com">
               </div>
               <div class="form-group mt-4">
                 <label class="text-secondary">Password</label>
-                <input type="password" value="password"
-                  class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
+                <input required type="password" value="password"
+                  v-model="holderRegister.password" class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
                   style="border-bottom:2px solid black">
               </div>
               <button class="btn btn-main w-100 font-weight-bold my-3"
@@ -53,8 +53,42 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { obrolinemixin } from '../helper/mixin'
 export default {
-
+  mixins: [obrolinemixin],
+  name: 'Signup',
+  data () {
+    return {
+      holderRegister: {
+        name: '',
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      actionRegister: 'auth/register'
+    }),
+    register () {
+      this.swalLoading('Registering Data')
+      this.actionRegister(this.holderRegister)
+        .then((res) => {
+          if (res.code === 200) {
+            this.swalLoadingClose()
+            this.swalAlert('Register Success', 'Please Login', 'success')
+            this.$router.push('/login')
+          } else {
+            this.swalLoadingClose()
+            this.swalAlert('Register Failed', res.pagination.errorMsg, 'error')
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }
 }
 </script>
 
