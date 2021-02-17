@@ -3,8 +3,8 @@
     <div class="card-body" style="height:35vh">
       <!-- Title -->
       <div>
-        <h1 class="d-inline-block text-main my-3">Obroline</h1>
-        <h1 @click="logout()" class="d-inline-block text-main my-3 float-right text-right h-100"><i class="fas fa-align-left"></i></h1>
+        <h1 class="d-inline-block text-main">Obroline</h1>
+        <h1 @click="logout()" class="d-inline-block text-main float-right text-right h-100"><i class="fas fa-align-left"></i></h1>
       </div>
       <!-- SearchBar -->
       <div class="mt-4">
@@ -30,7 +30,7 @@
     <div class="card-body" style="height:65vh">
       <!-- Contact List -->
       <ul class="list-group h-100"  style="overflow-y:scroll">
-        <li v-for="(item, index) in userList" :key="index" @click="getChatUser(item.id, item.name)"
+        <li v-for="(item, index) in userList" :key="index" @click="getChatUser(item.id, item.name, item.image)"
           class="list-group-item border-0">
             <div class="row no-gutters">
               <div class="col-md-3 my-auto">
@@ -38,7 +38,7 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title mb-0 font-weight-bold">{{item.name}}</h5>
+                  <p class="mb-0 card-title mb-0 font-weight-bold">{{item.name}}</p>
                   <p class="card-text mb-0 text-main">Last Chat</p>
                 </div>
             </div>
@@ -86,11 +86,12 @@ export default {
       actionLogout: 'auth/logout',
       emptyChat: 'chat/emptyChat'
     }),
-    getChatUser (targetId, targetName) {
+    getChatUser (targetId, targetName, image) {
       const data = {
         senderId: this.loginUserData.id,
         targetId: targetId,
         targetName: targetName,
+        image: image,
         roomId: this.loginUserData.roomId
       }
       this.getListChat(data)

@@ -9,7 +9,8 @@ const moduleChat = {
       chat: [],
       target: {
         id: 0,
-        name: ''
+        name: '',
+        image: 'default.png'
       }
     }
   },
@@ -23,7 +24,8 @@ const moduleChat = {
     setTarget (state, payload) {
       state.target = {
         id: payload.targetId,
-        name: payload.targetName
+        name: payload.targetName,
+        image: payload.image
       }
     }
   },
@@ -44,7 +46,7 @@ const moduleChat = {
       context.state.socket.on('res-get-list-chat', (response) => {
         context.commit('setChat', response)
       })
-      context.commit('setTarget', { targetId: data.targetId, targetName: data.targetName })
+      context.commit('setTarget', { targetId: data.targetId, targetName: data.targetName, image: data.image })
     },
     // Kirim Pesan
     sendChat (context, data) {
@@ -52,7 +54,7 @@ const moduleChat = {
     },
     // EmptyData
     emptyChat (context) {
-      context.commit('setTarget', { targetId: 0, targetName: '' })
+      context.commit('setTarget', { targetId: 0, targetName: '', image: 'default.png' })
       context.commit('setChat', [])
       context.commit('setUserList', [])
     }
