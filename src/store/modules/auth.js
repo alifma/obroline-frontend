@@ -4,8 +4,7 @@ const moduleAuth = {
   state: () => {
     return {
       token: localStorage.getItem('token') || null,
-      // name: localStorage.getItem('name') || '',
-      // id: localStorage.getItem('id') || null,
+      id: localStorage.getItem('id') || null,
       loginData: {}
     }
   },
@@ -23,6 +22,7 @@ const moduleAuth = {
         axios.post(`${context.rootState.apiURL}/login`, data)
           .then((response) => {
             localStorage.setItem('token', response.data.pagination.token)
+            localStorage.setItem('id', response.data.pagination.user.id)
             context.commit('setToken', response.data.pagination.token)
             context.commit('setLoginData', response.data.pagination.user)
             resolve(response.data)
