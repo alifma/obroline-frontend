@@ -7,10 +7,12 @@
             <h3>Friendlist</h3>
           </div>
           <div class="card-body">
-            {{users}}
+            <ul class="list-group">
+              <li v-for="(item, index) in users" :key="index" class="list-group-item">{{item.name}}</li>
+            </ul>
           </div>
           <div class="card-footer">
-            Sekian Friend Online
+            <p class="mb-0 text-center"><span class="text-main">{{users.length}}</span> Friend(s) are online</p>
           </div>
         </div>
       </div>
@@ -77,13 +79,12 @@ export default {
       this.socket.on('res-get-list-users', (users) => {
         this.users = users
       })
-    },
-    test () {
-      this.socket.emit('test', 'hello world')
     }
   },
   mounted () {
-    this.test()
+    this.joinRoom()
+    this.getListUsers()
+    this.resGetListUsers()
   }
 }
 </script>
