@@ -21,10 +21,12 @@ const moduleAuth = {
       return new Promise((resolve, reject) => {
         axios.post(`${context.rootState.apiURL}/login`, data)
           .then((response) => {
-            localStorage.setItem('token', response.data.pagination.token)
-            localStorage.setItem('id', response.data.pagination.user.id)
-            context.commit('setToken', response.data.pagination.token)
-            context.commit('setLoginData', response.data.pagination.user)
+            if (response.data.code === 200) {
+              localStorage.setItem('token', response.data.pagination.token)
+              localStorage.setItem('id', response.data.pagination.user.id)
+              context.commit('setToken', response.data.pagination.token)
+              context.commit('setLoginData', response.data.pagination.user)
+            }
             resolve(response.data)
           }).catch((err) => {
             reject(err)

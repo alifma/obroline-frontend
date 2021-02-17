@@ -81,7 +81,8 @@ export default {
           }
         })
         .catch((err) => {
-          console.log(err)
+          this.swalLoadingClose()
+          console.log(err.message)
         })
     }
   }

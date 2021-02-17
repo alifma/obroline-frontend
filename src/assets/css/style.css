@@ -38,9 +38,11 @@ html {
 
 /* Hidden Scrollbar */
 .hideScroll::-webkit-scrollbar {
+  oveflow-y:scroll;
   display: none;
 }
 .hideScroll {
+  oveflow-y:scroll;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }

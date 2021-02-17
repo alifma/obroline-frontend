@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <div class="row px-0 mx-0">
-      <div class="col-12 col-md-4 col-lg-4 mx-0 px-0" style="height:100vh">
+      <div class="col-12 col-md-4 col-lg-3 mx-0 px-0" style="height:100vh">
         <Profile />
       </div>
-      <div class="col-12 col-md-8 col-lg-8 mx-0 px-0" style="height:100vh">
+      <div class="col-12 col-md-8 col-lg-9 mx-0 px-0" style="height:100vh">
         <ListChat />
       </div>
     </div>
