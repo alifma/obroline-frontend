@@ -2,7 +2,7 @@ import Swal from 'sweetalert2'
 export const obrolinemixin = {
   data () {
     return {
-      baseURL: process.env.VUE_APP_API_URL,
+      baseURL: process.env.VUE_APP_WEB_URL,
       Toast: Swal.mixin({
         toast: true,
         position: 'top',

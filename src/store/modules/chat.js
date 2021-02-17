@@ -49,6 +49,12 @@ const moduleChat = {
     // Kirim Pesan
     sendChat (context, data) {
       context.state.socket.emit('send-message', data)
+    },
+    // EmptyData
+    emptyChat (context) {
+      context.commit('setTarget', { targetId: 0, targetName: '' })
+      context.commit('setChat', [])
+      context.commit('setUserList', [])
     }
   },
   getters: {
