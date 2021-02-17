@@ -21,7 +21,7 @@
                   style="border-bottom:2px solid black">
               </div>
               <div class="form-group mt-4 text-right">
-                <label class="text-main">Forgot passsword?</label>
+                <router-link to="/reset" class="text-main">Forgot passsword?</router-link>
               </div>
               <button class="btn btn-main w-100 font-weight-bold my-3"
                 style="border-radius:50px;height:60px">Login</button>
