@@ -1,9 +1,9 @@
 <template>
-  <div class="col-12 col-md-4 col-lg-4 mx-0 px-0" style="height:100vh">
-    <div class="card-body" style="height:35vh">
+  <div>
+    <div class="card-body" style="height:30vh">
       <!-- Title -->
       <div>
-        <h1 class="d-inline-block text-main">Obroline</h1>
+        <router-link to="/profile" class="h1 d-inline-block text-main">Obroline</router-link>
         <h1 @click="logout()" class="d-inline-block text-main float-right text-right h-100"><i class="fas fa-align-left"></i></h1>
       </div>
       <!-- SearchBar -->
@@ -27,9 +27,9 @@
         </label>
       </div>
     </div>
-    <div class="card-body" style="height:65vh">
+    <div class="card-body" style="height:70vh">
       <!-- Contact List -->
-      <ul class="list-group h-100"  style="overflow-y:scroll">
+      <ul class="list-group h-100 hideScroll"  style="overflow-y:scroll">
         <li v-for="(item, index) in userList" :key="index" @click="getChatUser(item.id, item.name, item.image)"
           class="list-group-item border-0">
             <div class="row no-gutters">

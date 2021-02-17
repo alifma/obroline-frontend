@@ -6,7 +6,7 @@
       <div class="col-sm-12 col-md-8 col-lg-6 my-auto">
         <div class="card p-4 shadow" style="border-radius:25px">
           <div class="card-body">
-            <router-link to="/login" class="float-left text-main mb-0"> <b-icon-arrow-left></b-icon-arrow-left> </router-link>
+            <router-link to="/login" class="float-left font-weight-bold d-inline-block mt-3 text-main mb-0"> <i class="fas fa-angle-left"></i> </router-link>
             <h4 class="text-main text-center my-3">Register</h4>
             <p class="mt-4">Let's create your account!</p>
             <form @submit.prevent="register()" action="" class="my-4">

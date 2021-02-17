@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 col-md-8 col-lg-8 mx-0 px-0" style="height:100vh">
+  <div style="height:100vh">
     <div v-if="target.name === ''" class="text-center h-100">
       <table style="height: 100%;width:100%">
         <tbody>
@@ -23,11 +23,11 @@
           </div>
         </div>
       </div>
-      <div class="card-body" style="height:75vh;overflow-y:scroll">
-        <div v-for="(item, index) in chatList" :key="index">
+      <div class="card-body hideScroll" style="height:75vh;overflow-y:scroll">
+        <div v-for="(item, index) in chatList" :key="index" class="w-100">
           <!-- <p v-if="item.senderName != loginUserData.name"><b>{{item.senderName}} : </b> {{item.message}}</p> -->
           <p v-if="item.senderName != loginUserData.name" class="btn btn-main" style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-bottom-right-radius:15px">{{item.message}}</p>
-          <p v-else class="text-right"><b></b> {{item.message}}</p>
+          <p v-else class="text-right">{{item.message}}</p>
         </div>
       </div>
       <div class="card-footer text-center" style="height:15vh">

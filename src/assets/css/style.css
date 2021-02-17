@@ -35,3 +35,12 @@ html {
   color: var(--main-theme);
   transition: all 0.5s;
 }
+
+/* Hidden Scrollbar */
+.hideScroll::-webkit-scrollbar {
+  display: none;
+}
+.hideScroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
