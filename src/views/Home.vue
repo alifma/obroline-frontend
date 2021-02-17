@@ -1,23 +1,56 @@
 <template>
   <div class="home container">
-    <div class="card mt-5">
-      <div class="card-header text-center"><h1>Halaman utama</h1></div>
-      <div class="card-body">
-        <h1>Content</h1>
+    <div class="row">
+      <div class="col-3">
+        <div class="card mt-5">
+          <div class="card-header">
+            <h3>Friendlist</h3>
+          </div>
+          <div class="card-body">
+            {{users}}
+          </div>
+          <div class="card-footer">
+            Sekian Friend Online
+          </div>
+        </div>
       </div>
-      <div class="card-footer text-center">
-        <button @click="logout()" class="btn btn-main">Logout</button>
+      <div class="col-9">
+        <div class="card mt-5">
+          <div class="card-header text-center">
+            <h1>Halaman utama</h1>
+          </div>
+          <div class="card-body">
+            <h1 class="text-center">Konten Chat Nanti ada di Sini</h1>
+            <p class="text-justify">{{loginUserData}}</p>
+          </div>
+          <div class="card-footer text-center">
+            <p class="mb-0">Logged In as {{loginUserData.name}}</p>
+            <button @click="logout()" class="btn btn-main">Logout</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { obrolinemixin } from '../helper/mixin'
+import io from 'socket.io-client'
 export default {
   mixins: [obrolinemixin],
   name: 'Home',
+  data () {
+    return {
+      users: [],
+      socket: io('http://localhost:4000')
+    }
+  },
+  computed: {
+    ...mapGetters({
+      loginUserData: 'auth/dataLogin'
+    })
+  },
   methods: {
     ...mapActions({
       actionLogout: 'auth/logout'
@@ -31,7 +64,26 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+    },
+    // Socket IO Methods
+    // Masuk ke dalam Room
+    joinRoom () {
+      this.socket.emit('join-room', this.loginUserData.roomId)
+    },
+    getListUsers () {
+      this.socket.emit('get-list-users', this.loginUserData.id, this.loginUserData.roomId)
+    },
+    resGetListUsers () {
+      this.socket.on('res-get-list-users', (users) => {
+        this.users = users
+      })
+    },
+    test () {
+      this.socket.emit('test', 'hello world')
     }
+  },
+  mounted () {
+    this.test()
   }
 }
 </script>

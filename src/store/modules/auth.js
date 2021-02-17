@@ -14,7 +14,7 @@ const moduleAuth = {
       state.token = payload
     },
     setLoginData (state, payload) {
-      state.access = payload
+      state.loginData = payload
     }
   },
   actions: {
@@ -24,7 +24,7 @@ const moduleAuth = {
           .then((response) => {
             localStorage.setItem('token', response.data.pagination.token)
             context.commit('setToken', response.data.pagination.token)
-            context.commit('setLoginData', response.data.data)
+            context.commit('setLoginData', response.data.pagination.user)
             resolve(response.data)
           }).catch((err) => {
             reject(err)
@@ -51,6 +51,7 @@ const moduleAuth = {
     }
   },
   getters: {
+    dataLogin: state => state.loginData
   }
 }
 export default moduleAuth
