@@ -3,12 +3,12 @@
     <div v-if="toggleEdit" class="card-body py-0">
       <div class="text-center pt-4" style="height:5vh">
         <h5 class="d-inline-block text-center text-main">Edit Profile</h5>
-        <router-link to="/" class="d-inline-block text-main float-left text-right h-100"><i
-            class="fas fa-angle-left"></i></router-link>
+        <p @click="switchToggle()" class="d-inline-block text-main float-left h-100"><i
+            class="fas fa-angle-left"></i></p>
       </div>
       <!-- Base Info -->
       <div class="text-center" style="height:20vh">
-        <img :src="`${webURL}/img/${loginUserData.image}`" @click="switchToggle()" class="img-fluid w-25 my-4" alt="">
+        <img :src="`${webURL}/img/${loginUserData.image}`" class="img-fluid w-25 my-4" alt="">
       </div>
       <!-- Detail Info -->
       <div style="height:75vh;overflow-y:scroll" class="hideScroll">
@@ -39,13 +39,14 @@
     </div>
     <div v-else class="card-body py-0">
       <div class="text-center pt-4" style="height:5vh">
-        <h5 class="d-inline-block text-center text-main" @click="switchToggle()">@{{loginUserData.username}}</h5>
+        <h5 class="d-inline-block text-center text-main" >@{{loginUserData.username}}</h5>
         <router-link to="/" class="d-inline-block text-main float-left text-right h-100"><i
             class="fas fa-angle-left"></i></router-link>
+        <p @click="switchToggle()" class="d-inline-block text-main float-right h-100 mb-0"><i class="fa fa-pencil"></i></p>
       </div>
       <!-- Base Info -->
       <div class="text-center" style="height:30vh">
-        <img :src="`${webURL}/img/${loginUserData.image}`" @click="switchToggle()" class="img-fluid w-25 my-4" alt="">
+        <img :src="`${webURL}/img/${loginUserData.image}`"  class="img-fluid w-25 my-4" alt="">
         <h5 class="font-weight-bold">{{loginUserData.name}}</h5>
         <p>@{{loginUserData.username}}</p>
       </div>
@@ -53,7 +54,7 @@
       <div style="height:65vh;overflow-y:scroll" class="hideScroll">
         <p class="font-weight-bold mb-1">Account</p>
         <p class="mb-0">{{loginUserData.handphone}}</p>
-        <small class="text-main">Tap to change phone number</small>
+        <small class="text-main" @click="switchToggle()" >Tap to change phone number</small>
         <hr>
         <p class="font-weight-bold mb-1">{{loginUserData.username}}</p>
         <small>Username</small>
