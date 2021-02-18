@@ -32,9 +32,12 @@
         <input type="text" v-model="holderEdit.bio" class="font-weight-bold form-control text-justify w-100" :placeholder="loginUserData.bio">
         <small>Bio</small>
         <hr>
+        <!-- <p class="font-weight-bold mb-1 text-justify">{{loginUserData.bio}}</p> -->
+        <input type="text" v-model="holderEdit.location" class="font-weight-bold form-control text-justify w-100" :placeholder="loginUserData.location">
+        <small>Location</small>
+        <hr>
         <button class="btn btn-main w-100 mb-4" type="submit">Update</button>
       </form>
-        <p>{{loginUserData}}</p>
       </div>
     </div>
     <div v-else class="card-body py-0">
@@ -62,6 +65,15 @@
         <p class="font-weight-bold mb-1 text-justify">{{loginUserData.bio}}</p>
         <small>Bio</small>
         <hr>
+        <p class="font-weight-bold mb-0 text-justify">lat: {{loginUserData.location.split(',')[0]}}</p>
+        <p class="font-weight-bold mb-1 text-justify">lng: {{loginUserData.location.split(',')[1]}}</p>
+        <small>Location</small>
+          <GoogleMapMaps :center="{lat: Number(loginUserData.location.split(',')[0]), lng: Number(loginUserData.location.split(',')[1])}" :zoom="15"
+            map-type-id="terrain" style="width: 300px; height: 300px" class="img-fluid">
+            <GoogleMapMarker :position="{lat: Number(loginUserData.location.split(',')[0]), lng: Number(loginUserData.location.split(',')[1])}"
+              :clickable="true" :draggable="false" @click="center=m.position"></GoogleMapMarker>
+          </GoogleMapMaps>
+        <hr>
         <p class="font-weight-bold mb-1">Settings</p>
         <table class="table table-borderless">
           <tbody>
@@ -79,6 +91,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { obrolinemixin } from '../helper/mixin'
+import * as VueGoogleMaps from 'vue2-google-maps'
 export default {
   mixins: [obrolinemixin],
   Name: 'Profile',
@@ -98,7 +111,8 @@ export default {
         image: '',
         username: '',
         name: '',
-        bio: ''
+        bio: '',
+        location: ''
       }
     }
   },
@@ -107,6 +121,10 @@ export default {
       loginUserData: 'auth/dataLogin',
       webURL: 'webURL'
     })
+  },
+  components: {
+    GoogleMapMaps: VueGoogleMaps.Map,
+    GoogleMapMarker: VueGoogleMaps.Marker
   },
   methods: {
     ...mapActions({
@@ -126,6 +144,7 @@ export default {
       this.holderEdit.username = this.loginUserData.username
       this.holderEdit.name = this.loginUserData.name
       this.holderEdit.bio = this.loginUserData.bio
+      this.holderEdit.location = this.loginUserData.location
     },
     processFile (el) {
       this.holderEdit.image = el.target.files[0]
@@ -138,6 +157,7 @@ export default {
       fd.append('username', this.holderEdit.username)
       fd.append('name', this.holderEdit.name)
       fd.append('bio', this.holderEdit.bio)
+      fd.append('location', this.holderEdit.location)
       const fixData = {
         id: this.holderEdit.id,
         fd
