@@ -25,9 +25,10 @@
       <!-- Detail Info -->
       <div style="height:45vh;overflow-y:scroll" class="hideScroll">
         <div v-if="clickedType === 'location'">
-          <GoogleMapMaps :center="{lat: -6.307946155560761, lng:106.11077392283725}" :zoom="15"
+          {{friendsData}}
+          <GoogleMapMaps :center="{lat: Number(friendsData.location.split(',')[0]), lng:Number(friendsData.location.split(',')[1])}" :zoom="15"
             map-type-id="terrain" style="width: 300px; height: 300px" class="img-fluid">
-            <GoogleMapMarker :key="index" v-for="(m, index) in markers" :position="m.position"
+            <GoogleMapMarker :position="{lat: Number(friendsData.location.split(',')[0]), lng:Number(friendsData.location.split(',')[1])}"
               :clickable="true" :draggable="false" @click="center=m.position"></GoogleMapMarker>
           </GoogleMapMaps>
         </div>
@@ -74,13 +75,6 @@ export default {
         { text: 'Documents', value: 'document' }
       ],
       clickedType: 'location',
-      markers: [
-        {
-          position: {
-            lat: -6.307946155560761, lng: 106.11077392283725
-          }
-        }
-      ],
       dummyFile: [
         { type: 'success', text: 'ExcelTugas.xlsx', icon: 'far fa-file-excel' },
         { type: 'danger', text: 'Kontrak.pdf', icon: 'far fa-file-pdf' },
