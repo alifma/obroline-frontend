@@ -50,6 +50,17 @@ const moduleAuth = {
             reject(err)
           })
       })
+    },
+    updateUser (context, data) {
+      return new Promise((resolve, reject) => {
+        axios.patch(`${context.rootState.apiURL}/user/${data.id}`, data.fd)
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
     }
   },
   getters: {
