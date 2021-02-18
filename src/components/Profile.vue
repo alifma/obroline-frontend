@@ -84,6 +84,7 @@ export default {
   Name: 'Profile',
   data () {
     return {
+      id: localStorage.getItem('id'),
       toggleEdit: false,
       configList: [{ icon: 'far fa-bell', text: 'Notification and Sounds' },
         { icon: 'fas fa-lock', text: 'Privacy and Security' },
@@ -109,7 +110,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      actionUpdate: 'auth/updateUser'
+      actionUpdate: 'auth/updateUser',
+      getUserProfile: 'auth/getDetailUser'
     }),
     comingSoon (msg) {
       this.swalAlert('Comming Soon', msg, 'info')
@@ -145,6 +147,7 @@ export default {
           if (response.data.code === 200) {
             this.swalLoadingClose()
             this.toggleEdit = false
+            this.getProfile()
             this.swalAlert('Update Data Success', '', 'success')
           } else {
             this.swalAlert('Update Data Failed', response.data.msg, 'error')
@@ -153,10 +156,20 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+    },
+    getProfile () {
+      this.getUserProfile(this.id)
+        .then((res) => {
+          console.log(res)
+          this.mountedData()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   },
   mounted () {
-    this.mountedData()
+    this.getProfile()
   }
 }
 </script>
