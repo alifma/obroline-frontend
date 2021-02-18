@@ -25,7 +25,11 @@
       <!-- Detail Info -->
       <div style="height:45vh;overflow-y:scroll" class="hideScroll">
         <div v-if="clickedType === 'location'">
-          <p>Location</p>
+          <GoogleMapMaps :center="{lat: -6.307946155560761, lng:106.11077392283725}" :zoom="10"
+            map-type-id="terrain" style="width: 300px; height: 300px" class="img-fluid">
+            <GoogleMapMarker :key="index" v-for="(m, index) in markers" :position="m.position"
+              :clickable="true" :draggable="true" @click="center=m.position"></GoogleMapMarker>
+          </GoogleMapMaps>
         </div>
         <div v-else-if="clickedType === 'image'">
           <div class="row">
@@ -43,6 +47,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { obrolinemixin } from '../helper/mixin'
+import * as VueGoogleMaps from 'vue2-google-maps'
 export default {
   mixins: [obrolinemixin],
   Name: 'Profile',
@@ -55,8 +60,19 @@ export default {
         { text: 'Image', value: 'image' },
         { text: 'Documents', value: 'document' }
       ],
-      clickedType: 'location'
+      clickedType: 'location',
+      markers: [
+        {
+          position: {
+            lat: -6.307946155560761, lng: 106.11077392283725
+          }
+        }
+      ]
     }
+  },
+  components: {
+    GoogleMapMaps: VueGoogleMaps.Map,
+    GoogleMapMarker: VueGoogleMaps.Marker
   },
   computed: {
     ...mapGetters({
@@ -74,8 +90,6 @@ export default {
     },
     setClickedType (data) {
       this.clickedType = data
-      console.log(data)
-      console.log(this.clickedType)
     }
     // getProfile () {
     //   this.getUserProfile(this.id)
