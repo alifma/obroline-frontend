@@ -17,7 +17,7 @@
           </div>
           <div class="col-md-11">
             <div class="p-1">
-              <p class="mb-0 card-title mb-0 font-weight-bold">{{target.name}}</p>
+              <p @click="getFriendsData()" class="mb-0 text-dark card-title mb-0 font-weight-bold">{{target.name}}</p>
               <p class="card-text mb-0 text-main">Online</p>
             </div>
           </div>
@@ -65,7 +65,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      actionSendChat: 'chat/sendChat'
+      actionSendChat: 'chat/sendChat',
+      friendsDataAction: 'auth/getFriendsData'
     }),
     // // Kirim Pesan
     sendChat () {
@@ -76,6 +77,10 @@ export default {
       }
       this.actionSendChat(data)
       this.message = ''
+    },
+    getFriendsData () {
+      this.friendsDataAction(this.target.id)
+      this.$router.push('/friends')
     }
   },
   mounted () {

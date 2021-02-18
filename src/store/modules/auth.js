@@ -6,7 +6,8 @@ const moduleAuth = {
       token: localStorage.getItem('token'),
       id: localStorage.getItem('id'),
       roomId: localStorage.getItem('roomId'),
-      loginData: {}
+      loginData: {},
+      friendsData: {}
     }
   },
   mutations: {
@@ -15,6 +16,9 @@ const moduleAuth = {
     },
     setLoginData (state, payload) {
       state.loginData = payload
+    },
+    setFriendsData (state, payload) {
+      state.friendsData = payload
     }
   },
   actions: {
@@ -78,10 +82,23 @@ const moduleAuth = {
             reject(err)
           })
       })
+    },
+    getFriendsData (context, id) {
+      return new Promise((resolve, reject) => {
+        axios.get(`${context.rootState.apiURL}/user/${id}`)
+          .then((response) => {
+            context.commit('setFriendsData', response.data.data[0])
+            resolve(response)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
     }
   },
   getters: {
     dataLogin: state => state.loginData,
+    dataFriends: state => state.friendsData,
     loginId: state => state.id,
     loginRoomId: state => state.roomId
   }

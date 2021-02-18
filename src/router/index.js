@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Reset from '../views/Reset.vue'
 import Profile from '../views/Profile.vue'
+import ProfileFriends from '../views/ProfileFriends.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/friends',
+    name: 'ProfileFriends',
+    component: ProfileFriends
   }
 ]
 
