@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <div class="card-body" style="height:30vh">
+  <div style="height:100vh">
+    <div class="card-body" style="height:22%">
       <!-- Title -->
       <div>
-        <router-link to="/profile" class="h1 d-inline-block text-main">Obroline</router-link>
-        <h1 @click="logout()" class="d-inline-block text-main float-right text-right h-100"><i class="fas fa-align-left"></i></h1>
+        <router-link to="/profile" class="h4 d-inline-block text-main">Obroline</router-link>
+        <h4 @click="logout()" class="d-inline-block text-main float-right text-right h-100"><i class="fas fa-align-left"></i></h4>
       </div>
       <!-- SearchBar -->
-      <div class="mt-4">
+      <div class="mt-2">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text border-0 bg-white" id="basic-addon1"><i class="fas fa-search"></i></span>
@@ -27,7 +27,7 @@
         </label>
       </div>
     </div>
-    <div class="card-body" style="height:70vh">
+    <div class="card-body" style="height:78%">
       <!-- Contact List -->
       <ul class="list-group h-100 hideScroll"  style="overflow-y:scroll">
         <li v-for="(item, index) in userList" :key="index" @click="getChatUser(item.id, item.name, item.image)"
