@@ -1,6 +1,6 @@
 <template>
   <div class="h-100" style="height:100vh">
-    <div class="card-body py-0">
+    <div v-if="friendsData.username !== undefined" class="card-body py-0">
       <div class="text-center pt-4" style="height:5vh">
         <h5 class="d-inline-block text-center text-main" >@{{friendsData.username}}</h5>
         <router-link to="/" class="d-inline-block text-main float-left text-right h-100"><i
@@ -25,10 +25,10 @@
       <!-- Detail Info -->
       <div style="height:45vh;overflow-y:scroll" class="hideScroll">
         <div v-if="clickedType === 'location'">
-          <GoogleMapMaps :center="{lat: -6.307946155560761, lng:106.11077392283725}" :zoom="10"
+          <GoogleMapMaps :center="{lat: -6.307946155560761, lng:106.11077392283725}" :zoom="15"
             map-type-id="terrain" style="width: 300px; height: 300px" class="img-fluid">
             <GoogleMapMarker :key="index" v-for="(m, index) in markers" :position="m.position"
-              :clickable="true" :draggable="true" @click="center=m.position"></GoogleMapMarker>
+              :clickable="true" :draggable="false" @click="center=m.position"></GoogleMapMarker>
           </GoogleMapMaps>
         </div>
         <div v-else-if="clickedType === 'image'">
@@ -38,7 +38,20 @@
             </div>
           </div>
         </div>
-        <div v-else>Data Dokument</div>
+        <div v-else>
+          <div v-for="(item, index) in dummyFile" :key="index">
+            <div :class="`alert alert-${item.type}`" role="alert">
+              <i :class="`${item.icon}`"></i> {{item.text}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-else class="card-body py-auto">
+      <div class="text-center pt-4" style="height:5vh">
+        <h5 class="d-inline-block text-center text-main" >@{{friendsData.username}}</h5>
+        <router-link to="/" class="d-inline-block text-main float-left text-right h-100"><i
+            class="fas fa-angle-left"></i></router-link>
       </div>
     </div>
   </div>
@@ -67,6 +80,14 @@ export default {
             lat: -6.307946155560761, lng: 106.11077392283725
           }
         }
+      ],
+      dummyFile: [
+        { type: 'success', text: 'ExcelTugas.xlsx', icon: 'far fa-file-excel' },
+        { type: 'danger', text: 'Kontrak.pdf', icon: 'far fa-file-pdf' },
+        { type: 'info', text: 'Skripsi.docx', icon: 'far fa-file-word' },
+        { type: 'warning', text: 'PPTTugas.pptx', icon: 'far fa-file-powerpoint' },
+        { type: 'danger', text: 'Kontrak.pdf', icon: 'far fa-file-pdf' },
+        { type: 'warning', text: 'PPTTugas.pptx', icon: 'far fa-file-powerpoint' }
       ]
     }
   },

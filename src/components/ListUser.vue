@@ -31,19 +31,17 @@
       <!-- Contact List -->
       <ul class="list-group h-100 hideScroll"  style="overflow-y:scroll">
         <li v-for="(item, index) in userList" :key="index" @click="getChatUser(item.id, item.name, item.image)"
-          class="list-group-item border-0">
+          class="list-group-item border-0 py-1 px-1">
             <div class="row no-gutters">
               <div class="col-md-3 my-auto">
                 <img :src="`${webURL}/img/${item.image}`" class="card-img" alt="...">
               </div>
-              <div class="col-md-8">
+              <div class="col-md-9">
                 <div class="card-body">
+                  <p class="card-title text-right mb-0 font-weight-light float-right">24:00</p>
                   <p class="mb-0 card-title mb-0 font-weight-bold">{{item.name}}</p>
                   <p class="card-text mb-0 text-main">Last Chat</p>
                 </div>
-            </div>
-            <div class="col-1">
-              <p class="card-title text-right mb-0 font-weight-light">24:00</p>
             </div>
           </div>
         </li>
