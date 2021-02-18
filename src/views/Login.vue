@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { obrolinemixin } from '../helper/mixin'
 export default {
   mixins: [obrolinemixin],
@@ -63,17 +63,26 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters({
+      // userLogin: 'auth/dataLogin'
+    })
+  },
   methods: {
     ...mapActions({
-      actionLogin: 'auth/login'
+      actionLogin: 'auth/login',
+      actionJoinRoom: 'chat/joinRoom',
+      getListUser: 'chat/getListUsers'
     }),
     login () {
       this.swalLoading('Loading Data')
       this.actionLogin(this.holderLogin)
         .then((res) => {
           if (res.code === 200) {
+            this.getChatList(res.pagination.user)
             this.swalLoadingClose()
             this.swalAlert('Login Success', '', 'success')
+            // console.log(res.pagination.user)
             this.$router.push('/')
           } else {
             this.swalLoadingClose()
@@ -84,9 +93,12 @@ export default {
           this.swalLoadingClose()
           console.log(err.message)
         })
+    },
+    getChatList (data) {
+      this.actionJoinRoom(data.roomId)
+      this.getListUser(data)
     }
   }
-
 }
 </script>
 

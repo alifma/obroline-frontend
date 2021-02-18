@@ -5,6 +5,7 @@ const moduleAuth = {
     return {
       token: localStorage.getItem('token') || null,
       id: localStorage.getItem('id') || null,
+      roomId: localStorage.getItem('roomId') || null,
       loginData: {}
     }
   },
@@ -22,12 +23,14 @@ const moduleAuth = {
         axios.post(`${context.rootState.apiURL}/login`, data)
           .then((response) => {
             if (response.data.code === 200) {
+              // console.log(response.data)
               localStorage.setItem('token', response.data.pagination.token)
               localStorage.setItem('id', response.data.pagination.user.id)
+              localStorage.setItem('roomId', response.data.pagination.user.roomId)
               context.commit('setToken', response.data.pagination.token)
               context.commit('setLoginData', response.data.pagination.user)
+              resolve(response.data)
             }
-            resolve(response.data)
           }).catch((err) => {
             reject(err)
           })
@@ -36,6 +39,8 @@ const moduleAuth = {
     logout (context) {
       return new Promise((resolve, reject) => {
         localStorage.removeItem('token')
+        localStorage.removeItem('id')
+        localStorage.removeItem('roomId')
         context.commit('setLoginData', {})
         resolve(true)
       })
@@ -64,7 +69,9 @@ const moduleAuth = {
     }
   },
   getters: {
-    dataLogin: state => state.loginData
+    dataLogin: state => state.loginData,
+    loginId: state => state.id,
+    loginRoomId: state => state.roomId
   }
 }
 export default moduleAuth

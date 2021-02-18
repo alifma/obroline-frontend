@@ -100,8 +100,8 @@ export default {
       this.actionLogout()
         .then((response) => {
           this.swalAlert('Logout Success', 'You Are Logged Out', 'success')
-          this.$router.push('/login')
           this.emptyChat()
+          this.$router.push('/login')
         })
         .catch((err) => {
           console.log(err)
@@ -109,8 +109,8 @@ export default {
     }
   },
   mounted () {
-    this.actionJoinRoom(this.loginUserData.roomId)
-    this.getListUser(this.loginUserData)
+    // this.actionJoinRoom(this.loginUserData.roomId)
+    // this.getListUser(this.loginUserData)
   }
 
 }

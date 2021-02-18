@@ -14,7 +14,7 @@
 <script>
 import ListUser from '../components/ListUser'
 import ListChat from '../components/ListChat'
-
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Home',
   data () {
@@ -26,8 +26,29 @@ export default {
     ListChat
   },
   computed: {
+    ...mapGetters({
+      loginData: 'auth/dataLogin',
+      loginId: 'auth/loginId',
+      loginRoomId: 'auth/loginRoomId',
+      userList: 'chat/userList'
+    })
   },
   methods: {
+    ...mapActions({
+      // actionJoinRoom: 'chat/joinRoom',
+      // getListUser: 'chat/getListUsers'
+    })
+    // getChatList () {
+    //   const data = {
+    //     id: this.loginId,
+    //     roomId: this.loginRoomId
+    //   }
+    //   this.actionJoinRoom(this.loginRoomId)
+    //   this.getListUser(data)
+    // }
+  },
+  mounted () {
+    // this.getChatList()
   }
 }
 </script>
