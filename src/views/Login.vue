@@ -11,12 +11,12 @@
             <form @submit.prevent="login()" action="" class="my-4">
               <div class="form-group mb-4">
                 <label class="text-secondary">Email</label>
-                <input v-model="holderLogin.email" type="email" class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
-                  style="border-bottom:2px solid black" value="obroline@gmail.com">
+                <input v-model="holderLogin.email" type="email"  autocomplete="email" class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
+                  style="border-bottom:2px solid black">
               </div>
               <div class="form-group mt-4">
                 <label class="text-secondary">Password</label>
-                <input v-model="holderLogin.password" type="password" value="password"
+                <input v-model="holderLogin.password"  autocomplete="current-password" type="password" value="password"
                   class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
                   style="border-bottom:2px solid black">
               </div>
@@ -72,17 +72,18 @@ export default {
     ...mapActions({
       actionLogin: 'auth/login',
       actionJoinRoom: 'chat/joinRoom',
-      getListUser: 'chat/getListUsers'
+      getListUser: 'chat/getListUsers',
+      bindLoginData: 'auth/bindLoginData'
     }),
     login () {
       this.swalLoading('Loading Data')
       this.actionLogin(this.holderLogin)
         .then((res) => {
           if (res.code === 200) {
+            this.bindLoginData(res.pagination.user)
             this.getChatList(res.pagination.user)
             this.swalLoadingClose()
             this.swalAlert('Login Success', '', 'success')
-            // console.log(res.pagination.user)
             this.$router.push('/')
           } else {
             this.swalLoadingClose()

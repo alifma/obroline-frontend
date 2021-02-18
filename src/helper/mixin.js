@@ -9,7 +9,8 @@ export const obrolinemixin = {
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true
-      })
+      }),
+      loginSessionHandler: {}
     }
   },
   methods: {

@@ -3,9 +3,9 @@ const moduleAuth = {
   namespaced: true,
   state: () => {
     return {
-      token: localStorage.getItem('token') || null,
-      id: localStorage.getItem('id') || null,
-      roomId: localStorage.getItem('roomId') || null,
+      token: localStorage.getItem('token'),
+      id: localStorage.getItem('id'),
+      roomId: localStorage.getItem('roomId'),
       loginData: {}
     }
   },
@@ -23,10 +23,10 @@ const moduleAuth = {
         axios.post(`${context.rootState.apiURL}/login`, data)
           .then((response) => {
             if (response.data.code === 200) {
-              // console.log(response.data)
               localStorage.setItem('token', response.data.pagination.token)
               localStorage.setItem('id', response.data.pagination.user.id)
               localStorage.setItem('roomId', response.data.pagination.user.roomId)
+              localStorage.setItem('userData', response.data.pagination.user)
               context.commit('setToken', response.data.pagination.token)
               context.commit('setLoginData', response.data.pagination.user)
               resolve(response.data)
@@ -59,6 +59,22 @@ const moduleAuth = {
     updateUser (context, data) {
       return new Promise((resolve, reject) => {
         axios.patch(`${context.rootState.apiURL}/user/${data.id}`, data.fd)
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+    bindLoginData (context, data) {
+      context.commit('setLoginData', data)
+      localStorage.setItem('id', data.id)
+      localStorage.setItem('roomId', data.roomId)
+    },
+    getDetailUser (context, id) {
+      return new Promise((resolve, reject) => {
+        axios.get(`${context.rootState.apiURL}/user/${id}`)
           .then((response) => {
             resolve(response)
           })
