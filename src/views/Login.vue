@@ -72,15 +72,13 @@ export default {
     ...mapActions({
       actionLogin: 'auth/login',
       actionJoinRoom: 'chat/joinRoom',
-      getListUser: 'chat/getListUsers',
-      bindLoginData: 'auth/bindLoginData'
+      getListUser: 'chat/getListUsers'
     }),
     login () {
       this.swalLoading('Loading Data')
       this.actionLogin(this.holderLogin)
         .then((res) => {
           if (res.code === 200) {
-            this.bindLoginData(res.pagination.user)
             this.getChatList(res.pagination.user)
             this.swalLoadingClose()
             this.swalAlert('Login Success', '', 'success')

@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <div class="row px-0 mx-0">
-      <h1>{{holderLogin}}</h1>
       <div class="col-12 col-md-4 col-lg-3 mx-0 px-0" style="height:100vh">
         <ListUser />
       </div>
@@ -43,29 +42,23 @@ export default {
       getListUser: 'chat/getListUsers',
       getUser: 'auth/getDetailUser'
     }),
-    getUserFriends () {
+    getUserData () {
       this.getUser(this.id)
         .then((res) => {
           this.holderLogin = res.data.data[0]
+          this.getChatList()
         })
         .catch((err) => {
           console.log(err)
         })
     },
     getChatList () {
-      const data = {
-        id: this.loginData.id,
-        idLS: this.loginId !== this.loginData.id ? this.loginData.id = this.loginid : this.loginId,
-        roomId: this.loginData.roomId,
-        roomIdLS: this.loginRoomId
-      }
-      console.log(data)
-      this.actionJoinRoom(this.loginData.roomId)
-      this.getListUser(data)
+      this.actionJoinRoom(this.holderLogin.roomId)
+      this.getListUser(this.holderLogin)
     }
   },
   mounted () {
-    this.getUserFriends()
+    this.getUserData()
   }
 }
 </script>

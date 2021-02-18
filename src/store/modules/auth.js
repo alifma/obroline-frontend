@@ -67,15 +67,11 @@ const moduleAuth = {
           })
       })
     },
-    bindLoginData (context, data) {
-      context.commit('setLoginData', data)
-      localStorage.setItem('id', data.id)
-      localStorage.setItem('roomId', data.roomId)
-    },
     getDetailUser (context, id) {
       return new Promise((resolve, reject) => {
         axios.get(`${context.rootState.apiURL}/user/${id}`)
           .then((response) => {
+            context.commit('setLoginData', response.data.data[0])
             resolve(response)
           })
           .catch((err) => {

@@ -24,7 +24,6 @@
         </div>
       </div>
       <div class="card-body hideScroll" style="height:75vh;overflow-y:scroll">
-        <p>{{loginUserData}}</p>
         <div v-for="(item, index) in chatList" :key="index" class="w-100">
           <!-- <p v-if="item.senderName != loginUserData.name"><b>{{item.senderName}} : </b> {{item.message}}</p> -->
           <p v-if="item.senderName != loginUserData.name" class="btn btn-main" style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-bottom-right-radius:15px">{{item.message}}</p>

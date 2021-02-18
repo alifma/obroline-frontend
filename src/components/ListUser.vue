@@ -81,7 +81,6 @@ export default {
   methods: {
     ...mapActions({
       actionJoinRoom: 'chat/joinRoom',
-      getListUser: 'chat/getListUsers',
       getListChat: 'chat/getListChat',
       actionLogout: 'auth/logout',
       emptyChat: 'chat/emptyChat'
@@ -109,8 +108,6 @@ export default {
     }
   },
   mounted () {
-    // this.actionJoinRoom(this.loginUserData.roomId)
-    // this.getListUser(this.loginUserData)
   }
 
 }
