@@ -58,6 +58,12 @@ const moduleChat = {
         context.commit('setUserList', response)
       })
     },
+    // Refresh List Users
+    getListContactRT (context) {
+      context.state.socket.on('res-get-list-users', (response) => {
+        context.commit('setUserList', response)
+      })
+    },
     // Ambil Daftar Chat
     getListChat (context, data) {
       context.state.socket.emit('get-list-chat', { senderId: data.senderId, targetId: data.targetId, roomId: data.roomId })
@@ -75,6 +81,9 @@ const moduleChat = {
       context.commit('setTarget', { targetId: 0, targetName: '', image: 'default.png', socketId: '' })
       context.commit('setChat', [])
       context.commit('setUserList', [])
+    },
+    addFriends (context, data) {
+      context.state.socket.emit('add-friends', data)
     }
   },
   getters: {

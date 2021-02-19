@@ -41,7 +41,8 @@ export default {
       actionJoinRoom: 'chat/joinRoom',
       getListUser: 'chat/getListUsers',
       connected: 'chat/connected',
-      getUser: 'auth/getDetailUser'
+      getUser: 'auth/getDetailUser',
+      getListContactRT: 'chat/getListContactRT'
     }),
     getUserData () {
       this.getUser(this.id)
@@ -60,6 +61,7 @@ export default {
     }
   },
   mounted () {
+    this.getListContactRT()
     this.getUserData()
   }
 }

@@ -10,11 +10,12 @@
       <div class="text-center" style="height:50vh">
         <img :src="`${webURL}/img/${friendsData.image}`"  class="img-fluid w-25 my-4" alt="">
         <br>
-       <div id="friendship">
-          <p v-if="friendsData.isfriends === false" class="text-left mb-0 btn btn-sm font-weight-bold btn-warning" style="border-radius:25px"><i class="fas fa-plus"></i> Add</p>
-          <p v-else class="text-left mb-0 btn btn-sm font-weight-bold btn-warning disabled" style="border-radius:25px">Friends</p>
+       <div id="friendship" class="text-left">
+          <!-- <p v-if="friendsData.isfriends === false" class="text-left mb-0 btn btn-sm font-weight-bold btn-warning" style="border-radius:25px"><i class="fas fa-plus"></i> Add</p> -->
+          <!-- <p v-else class="text-left mb-0 btn btn-sm font-weight-bold btn-warning disabled" style="border-radius:25px">Friends</p> -->
+        <h5 v-if="friendsData.isfriends === false" class="text-left font-weight-bold mt-3 d-inline-block">{{friendsData.name}} <span @click="addFriends(friendsData.id, friendsData.roomId)" class="badge badge-warning"><i class="fas fa-plus"></i> Add</span></h5>
+        <h5 v-else class="text-left font-weight-bold mt-3 d-inline-block">{{friendsData.name}} <span class="badge badge-warning">Friends</span></h5>
        </div>
-        <h5 class="text-left font-weight-bold mt-3">{{friendsData.name}}</h5>
         <p class="text-left">Online</p>
         <p class="text-left font-weight-bold mb-0">Phone number</p>
         <p class="text-left">{{friendsData.handphone}}</p>
@@ -73,6 +74,8 @@ export default {
     return {
       detailFriends: {},
       dummyImage: 15,
+      id: localStorage.getItem('id'),
+      roomId: localStorage.getItem('roomId'),
       chatDataType: [
         { text: 'Location', value: 'location' },
         { text: 'Image', value: 'image' },
@@ -102,13 +105,33 @@ export default {
   methods: {
     ...mapActions({
       actionUpdate: 'auth/updateUser',
-      getUserProfile: 'auth/getDetailUser'
+      getUserProfile: 'auth/getDetailUser',
+      actionFriendsProfile: 'auth/getFriendsData',
+      actionAdd: 'chat/addFriends'
     }),
     comingSoon (msg) {
       this.swalAlert('Comming Soon', msg, 'info')
     },
     setClickedType (data) {
       this.clickedType = data
+    },
+    addFriends (id, roomId) {
+      const data = {
+        userId: Number(this.id),
+        userRoomId: Number(this.roomId),
+        targetId: id,
+        status: 'friends',
+        targetRoomId: roomId
+      }
+      this.actionAdd(data)
+        .then((res) => {
+          this.actionFriendsProfile(this.friendsData.id)
+          this.swalAlert('Add Success', 'You are now Friends', 'success')
+          this.$router.push('/')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
     // getProfile () {
     //   this.getUserProfile(this.id)
