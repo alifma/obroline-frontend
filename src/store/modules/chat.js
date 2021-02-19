@@ -30,6 +30,12 @@ const moduleChat = {
     }
   },
   actions: {
+    connected (context, data) {
+      context.state.socket.emit('connected', data)
+    },
+    disconnected (context) {
+      context.state.socket.emit('logout')
+    },
     joinRoom (context, id) {
       context.state.socket.emit('join-room', id)
     },

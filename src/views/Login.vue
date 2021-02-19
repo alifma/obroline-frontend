@@ -72,7 +72,8 @@ export default {
     ...mapActions({
       actionLogin: 'auth/login',
       actionJoinRoom: 'chat/joinRoom',
-      getListUser: 'chat/getListUsers'
+      getListUser: 'chat/getListUsers',
+      connected: 'chat/connected'
     }),
     login () {
       this.swalLoading('Loading Data')
@@ -81,6 +82,7 @@ export default {
           if (res.code === 200) {
             this.getChatList(res.pagination.user)
             this.swalLoadingClose()
+            this.connected(res.pagination.user)
             this.swalAlert('Login Success', '', 'success')
             this.$router.push('/')
           } else {

@@ -18,7 +18,7 @@
           <div class="col-md-11">
             <div class="p-1">
               <p @click="getFriendsData()" class="mb-0 text-dark card-title mb-0 font-weight-bold">{{target.name}}</p>
-              <p class="card-text mb-0 text-main">Online</p>
+              <p class="card-text mb-0 text-main">{{target.sessionId}}</p>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@
             </div>
             <div class="col-3 col-lg-3 col-md-4 my-auto">
               <div class="d-flex-column text-main justify-content-between">
-                <i  @click="sendChat()" class="far fa-2x mx-2 fa-paper-plane"></i>
+                <i @click="sendChat()" class="far fa-2x mx-2 fa-paper-plane"></i>
                 <i @click="comingSoon('Add Files')" class="fas fa-2x mx-2 fa-plus "></i>
                 <i @click="comingSoon('Add Sticker')" class="fas fa-2x mx-2 fa-surprise"></i>
                 <i @click="comingSoon('Add Camera Photos')" class="fas fa-2x mx-2 fa-camera"></i>

@@ -81,6 +81,7 @@ export default {
       actionJoinRoom: 'chat/joinRoom',
       getListChat: 'chat/getListChat',
       actionLogout: 'auth/logout',
+      cleanSession: 'chat/disconnected',
       emptyChat: 'chat/emptyChat'
     }),
     getChatUser (targetId, targetName, image) {
@@ -98,6 +99,7 @@ export default {
         .then((response) => {
           this.swalAlert('Logout Success', 'You Are Logged Out', 'success')
           this.emptyChat()
+          this.cleanSession()
           this.$router.push('/login')
         })
         .catch((err) => {
