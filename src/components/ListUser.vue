@@ -12,7 +12,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text border-0 bg-white" id="basic-addon1"><i class="fas fa-search"></i></span>
           </div>
-          <input type="text" class="form-control border-0" placeholder="Type your message...">
+          <input type="text" class="form-control border-0" v-model="searchName" @keyup="searchByName()" placeholder="Type your message...">
           <div class="input-group-prepend ">
             <span class="input-group-text font-weight-bold text-main border-0 bg-white" id="basic-addon1"><i
                 class="fas fa-plus"></i></span>
@@ -29,7 +29,7 @@
     </div>
     <div class="card-body" style="height:78%">
       <!-- Contact List -->
-      <ul class="list-group h-100 hideScroll"  style="overflow-y:scroll">
+      <ul v-if="searchName.split('').length < 1" class="list-group h-100 hideScroll"  style="overflow-y:scroll">
         <li v-for="(item, index) in userList" :key="index" @click="getChatUser(item.id, item.name, item.image, item.socketId)"
           class="list-group-item border-0 py-1 px-1">
             <div class="row no-gutters">
@@ -38,7 +38,6 @@
               </div>
               <div class="col-md-9">
                 <div class="card-body">
-                  <p>{{item}}</p>
                   <p class="card-title text-right mb-0 font-weight-light float-right">24:00</p>
                   <p class="mb-0 card-title mb-0 font-weight-bold">{{item.name}}</p>
                   <p class="card-text mb-0 text-main">Last Chat</p>
@@ -46,6 +45,10 @@
             </div>
           </div>
         </li>
+      </ul>
+      <ul v-else>
+        <h5>Ini tampil ketika lagi Nyari</h5>
+        <li>Misalkan nyariin si {{searchName}}</li>
       </ul>
     </div>
   </div>
@@ -94,7 +97,6 @@ export default {
         roomId: this.loginUserData.roomId,
         socketId: socket
       }
-      console.log(data)
       this.getListChat(data)
     },
     logout () {
@@ -108,6 +110,9 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+    },
+    searchByName () {
+      console.log(this.searchName)
     }
   },
   mounted () {

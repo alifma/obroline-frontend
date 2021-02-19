@@ -10,7 +10,8 @@ export const obrolinemixin = {
         timer: 3000,
         timerProgressBar: true
       }),
-      loginSessionHandler: {}
+      loginSessionHandler: {},
+      searchName: ''
     }
   },
   methods: {
