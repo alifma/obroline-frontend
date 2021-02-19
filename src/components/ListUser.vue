@@ -46,9 +46,23 @@
           </div>
         </li>
       </ul>
-      <ul v-else>
-        <h5>Ini tampil ketika lagi Nyari</h5>
-        <li>Misalkan nyariin si {{searchName}}</li>
+      <ul v-else class="list-group h-100 hideScroll"  style="overflow-y:scroll">
+        <h5 >Search Result For {{searchName}}</h5>
+          <li v-for="(item, index) in searchList" :key="index" @click="getChatUser(item.id, item.name, item.image, item.socketId)"
+          class="list-group-item border-0 py-1 px-1">
+            <div class="row no-gutters">
+              <div class="col-md-3 my-auto">
+                <img :src="`${webURL}/img/${item.image}`" class="card-img" alt="...">
+              </div>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <p class="card-title text-right mb-0 font-weight-light float-right">24:00</p>
+                  <p class="mb-0 card-title mb-0 font-weight-bold">{{item.name}}</p>
+                  <p class="card-text mb-0 text-main">Last Chat</p>
+                </div>
+            </div>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
@@ -77,6 +91,7 @@ export default {
     ...mapGetters({
       loginUserData: 'auth/dataLogin',
       userList: 'chat/userList',
+      searchList: 'chat/searchList',
       webURL: 'webURL'
     })
   },
@@ -86,7 +101,8 @@ export default {
       getListChat: 'chat/getListChat',
       actionLogout: 'auth/logout',
       cleanSession: 'chat/disconnected',
-      emptyChat: 'chat/emptyChat'
+      emptyChat: 'chat/emptyChat',
+      actionSearchName: 'chat/searchName'
     }),
     getChatUser (targetId, targetName, image, socket) {
       const data = {
@@ -112,7 +128,12 @@ export default {
         })
     },
     searchByName () {
-      console.log(this.searchName)
+      const data = {
+        id: this.loginUserData.id,
+        searchName: this.searchName,
+        roomId: this.loginUserData.roomId
+      }
+      this.actionSearchName(data)
     }
   },
   mounted () {

@@ -6,6 +6,7 @@ const moduleChat = {
     return {
       socket: io('http://localhost:4000'),
       userList: [],
+      searchList: [],
       chat: [],
       target: {
         id: 0,
@@ -18,6 +19,9 @@ const moduleChat = {
   mutations: {
     setUserList (state, payload) {
       state.userList = payload
+    },
+    setSearchList (state, payload) {
+      state.searchList = payload
     },
     setChat (state, payload) {
       state.chat = payload
@@ -40,6 +44,12 @@ const moduleChat = {
     },
     joinRoom (context, id) {
       context.state.socket.emit('join-room', id)
+    },
+    searchName (context, data) {
+      context.state.socket.emit('search-name', data)
+      context.state.socket.on('res-search-name', (response) => {
+        context.commit('setSearchList', response)
+      })
     },
     // Ambil Daftar Teman
     getListUsers (context, data) {
@@ -69,6 +79,7 @@ const moduleChat = {
   },
   getters: {
     userList: state => state.userList,
+    searchList: state => state.searchList,
     chatList: state => state.chat,
     getTarget: state => state.target
   }
