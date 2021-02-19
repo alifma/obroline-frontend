@@ -80,6 +80,10 @@ export default {
       this.actionLogin(this.holderLogin)
         .then((res) => {
           if (res.code === 200) {
+            this.holderLogin = {
+              email: '',
+              password: ''
+            }
             this.getChatList(res.pagination.user)
             this.swalLoadingClose()
             this.connected(res.pagination.user)

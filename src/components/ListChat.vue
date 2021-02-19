@@ -18,7 +18,7 @@
           <div class="col-md-11">
             <div class="p-1">
               <p @click="getFriendsData()" class="mb-0 text-dark card-title mb-0 font-weight-bold">{{target.name}}</p>
-              <p class="card-text mb-0 text-main">{{target.sessionId}}</p>
+              <p class="card-text mb-0 text-main">{{target.socketId === null ? 'Offline' : 'Online'}}</p>
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@
           <!-- <p v-if="item.senderName != loginUserData.name"><b>{{item.senderName}} : </b> {{item.message}}</p> -->
           <div v-if="item.senderName != loginUserData.name" class="text-left w-50">
             <p class="btn btn-main mt-1 mb-0 text-justify " style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-bottom-right-radius:15px; max-width:100%; overflow-wrap: break-word">{{item.message}}</p>
-            <smal class="text-left btn text-secondary w-100">{{new Date(item.created_at).toLocaleTimeString()}}</smal>
+            <p class="text-left btn text-secondary w-100">{{new Date(item.created_at).toLocaleTimeString()}}</p>
           </div>
           <div v-else class="text-right">
             <p class="btn mb-0 my-1 text-justify" style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;max-width:50%; overflow-wrap: break-word">{{item.message}}</p>

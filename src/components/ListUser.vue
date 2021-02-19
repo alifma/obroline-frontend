@@ -30,7 +30,7 @@
     <div class="card-body" style="height:78%">
       <!-- Contact List -->
       <ul class="list-group h-100 hideScroll"  style="overflow-y:scroll">
-        <li v-for="(item, index) in userList" :key="index" @click="getChatUser(item.id, item.name, item.image)"
+        <li v-for="(item, index) in userList" :key="index" @click="getChatUser(item.id, item.name, item.image, item.socketId)"
           class="list-group-item border-0 py-1 px-1">
             <div class="row no-gutters">
               <div class="col-md-3 my-auto">
@@ -38,6 +38,7 @@
               </div>
               <div class="col-md-9">
                 <div class="card-body">
+                  <p>{{item}}</p>
                   <p class="card-title text-right mb-0 font-weight-light float-right">24:00</p>
                   <p class="mb-0 card-title mb-0 font-weight-bold">{{item.name}}</p>
                   <p class="card-text mb-0 text-main">Last Chat</p>
@@ -84,14 +85,16 @@ export default {
       cleanSession: 'chat/disconnected',
       emptyChat: 'chat/emptyChat'
     }),
-    getChatUser (targetId, targetName, image) {
+    getChatUser (targetId, targetName, image, socket) {
       const data = {
         senderId: this.loginUserData.id,
         targetId: targetId,
         targetName: targetName,
         image: image,
-        roomId: this.loginUserData.roomId
+        roomId: this.loginUserData.roomId,
+        socketId: socket
       }
+      console.log(data)
       this.getListChat(data)
     },
     logout () {
