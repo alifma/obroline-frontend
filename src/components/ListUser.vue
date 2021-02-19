@@ -3,7 +3,7 @@
     <div class="card-body" style="height:22%">
       <!-- Title -->
       <div>
-        <router-link to="/profile" class="h4 d-inline-block text-main">Obroline</router-link>
+        <router-link to="/profile" class="h4 d-inline-block font-weight-bold text-main">Obroline</router-link>
         <h4 @click="logout()" class="d-inline-block text-main float-right text-right h-100"><i class="fas fa-align-left"></i></h4>
       </div>
       <!-- SearchBar -->

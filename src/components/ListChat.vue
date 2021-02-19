@@ -26,14 +26,30 @@
       <div class="card-body hideScroll" style="height:75vh;overflow-y:scroll">
         <div v-for="(item, index) in chatList" :key="index" class="w-100">
           <!-- <p v-if="item.senderName != loginUserData.name"><b>{{item.senderName}} : </b> {{item.message}}</p> -->
-          <p v-if="item.senderName != loginUserData.name" class="btn btn-main" style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-bottom-right-radius:15px">{{item.message}}</p>
-          <p v-else class="text-right">{{item.message}}</p>
+          <div v-if="item.senderName != loginUserData.name" class="text-left w-50">
+            <p class="btn btn-main mt-1 mb-0 text-justify " style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-bottom-right-radius:15px; max-width:100%; overflow-wrap: break-word">{{item.message}}</p>
+            <smal class="text-left btn text-secondary w-100">{{new Date(item.created_at).toLocaleTimeString()}}</smal>
+          </div>
+          <div v-else class="text-right">
+            <p class="btn mb-0 my-1 text-justify" style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;max-width:50%; overflow-wrap: break-word">{{item.message}}</p>
+          </div>
         </div>
       </div>
       <div class="card-footer text-center" style="height:15vh">
         <form @submit.prevent="sendChat()" class="w-100 form-inline">
-          <input v-model="message" class="form-control w-75" type="text">
-          <button type="submit" class="btn btn-main w-25">Send</button>
+          <div class="row w-100" >
+            <div class="col-9 col-lg-9 col-md-8">
+            <input v-model="message" class="form-control w-100" type="text" placeholder="Type your message ...">
+            </div>
+            <div class="col-3 col-lg-3 col-md-4 my-auto">
+              <div class="d-flex-column text-main justify-content-between">
+                <i  @click="sendChat()" class="far fa-2x mx-2 fa-paper-plane"></i>
+                <i @click="comingSoon('Add Files')" class="fas fa-2x mx-2 fa-plus "></i>
+                <i @click="comingSoon('Add Sticker')" class="fas fa-2x mx-2 fa-surprise"></i>
+                <i @click="comingSoon('Add Camera Photos')" class="fas fa-2x mx-2 fa-camera"></i>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -81,6 +97,9 @@ export default {
     getFriendsData () {
       this.friendsDataAction(this.target.id)
       this.$router.push('/friends')
+    },
+    comingSoon (msg) {
+      this.swalAlert('Comming Soon', msg, 'info')
     }
   },
   mounted () {

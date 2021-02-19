@@ -25,7 +25,6 @@
       <!-- Detail Info -->
       <div style="height:45vh;overflow-y:scroll" class="hideScroll">
         <div v-if="clickedType === 'location'">
-          {{friendsData}}
           <GoogleMapMaps :center="{lat: Number(friendsData.location.split(',')[0]), lng:Number(friendsData.location.split(',')[1])}" :zoom="15"
             map-type-id="terrain" style="width: 300px; height: 300px" class="img-fluid">
             <GoogleMapMarker :position="{lat: Number(friendsData.location.split(',')[0]), lng:Number(friendsData.location.split(',')[1])}"

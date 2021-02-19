@@ -21,6 +21,10 @@ html {
   background-color: var(--main-theme);
   color: #fff;
 }
+.bg-main {
+  background: var(--main-theme);
+  background-color: var(--main-theme);
+}
 .btn-main:hover {
   background-color: var(--main-hover);
   color:#fff;
