@@ -40,6 +40,7 @@ export default {
     ...mapActions({
       actionJoinRoom: 'chat/joinRoom',
       getListUser: 'chat/getListUsers',
+      connected: 'chat/connected',
       getUser: 'auth/getDetailUser'
     }),
     getUserData () {
@@ -47,6 +48,7 @@ export default {
         .then((res) => {
           this.holderLogin = res.data.data[0]
           this.getChatList()
+          this.connected(res.data.data[0])
         })
         .catch((err) => {
           console.log(err)
