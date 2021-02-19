@@ -9,7 +9,7 @@
             <router-link to="/login" class="float-left font-weight-bold d-inline-block mt-3 text-main mb-0"> <i class="fas fa-angle-left"></i> </router-link>
             <h4 class="text-main text-center my-3">Register</h4>
             <p class="mt-4">Let's create your account!</p>
-            <form @submit.prevent="register()" action="" class="my-4">
+            <form @submit.prevent="register()" action="" class="mt-4">
               <div class="form-group mb-4">
                 <label class="text-secondary">Name</label>
                 <input required type="text" v-model="holderRegister.name" class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
@@ -28,6 +28,7 @@
               </div>
               <button class="btn btn-main w-100 font-weight-bold my-3"
                 style="border-radius:50px;height:60px">Register</button>
+            </form>
               <div class="row text-center text-secondary">
                 <div class="col-4 my-auto">
                   <hr style="height:1.5px;border:none;color:#6C757D;background-color:#6C757D;">
@@ -39,10 +40,9 @@
                   <hr style="height:1.5px;border:none;color:#6C757D;background-color:#6C757D;">
                 </div>
               </div>
-              <button class="btn btn-sub w-100 font-weight-bold my-3" style="border-radius:50px;height:60px">
+              <button class="btn btn-sub w-100 font-weight-bold my-3"  @click="swalAlert('Coming Soon', 'You will be able to Sign-Up with your google account', 'info')" style="border-radius:50px;height:60px">
                 <b-icon-google></b-icon-google> Google
               </button>
-            </form>
           </div>
         </div>
       </div>

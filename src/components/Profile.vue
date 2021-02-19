@@ -180,7 +180,6 @@ export default {
     getProfile () {
       this.getUserProfile(this.id)
         .then((res) => {
-          console.log(res)
           this.mountedData()
         })
         .catch((err) => {

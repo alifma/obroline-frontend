@@ -34,6 +34,8 @@ const moduleAuth = {
               context.commit('setToken', response.data.pagination.token)
               context.commit('setLoginData', response.data.pagination.user)
               resolve(response.data)
+            } else {
+              resolve(response.data)
             }
           }).catch((err) => {
             reject(err)
@@ -87,7 +89,22 @@ const moduleAuth = {
       return new Promise((resolve, reject) => {
         axios.get(`${context.rootState.apiURL}/user/${id}`)
           .then((response) => {
-            context.commit('setFriendsData', response.data.data[0])
+            let responseData = response.data.data[0]
+            const isFriends = context.rootState.chat.userList.filter((i) => {
+              return i.id === response.data.data[0].id
+            })
+            if (isFriends.length > 0) {
+              responseData = {
+                ...responseData,
+                isfriends: true
+              }
+            } else {
+              responseData = {
+                ...responseData,
+                isfriends: false
+              }
+            }
+            context.commit('setFriendsData', responseData)
             resolve(response)
           })
           .catch((err) => {

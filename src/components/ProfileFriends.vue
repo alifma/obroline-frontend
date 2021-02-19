@@ -7,9 +7,14 @@
             class="fas fa-angle-left"></i></router-link>
       </div>
       <!-- Base Info -->
-      <div class="text-center" style="height:42vh">
+      <div class="text-center" style="height:50vh">
         <img :src="`${webURL}/img/${friendsData.image}`"  class="img-fluid w-25 my-4" alt="">
-        <h5 class="text-left font-weight-bold">{{friendsData.name}}</h5>
+        <br>
+       <div id="friendship">
+          <p v-if="friendsData.isfriends === false" class="text-left mb-0 btn btn-sm font-weight-bold btn-warning" style="border-radius:25px"><i class="fas fa-plus"></i> Add</p>
+          <p v-else class="text-left mb-0 btn btn-sm font-weight-bold btn-warning disabled" style="border-radius:25px">Friends</p>
+       </div>
+        <h5 class="text-left font-weight-bold mt-3">{{friendsData.name}}</h5>
         <p class="text-left">Online</p>
         <p class="text-left font-weight-bold mb-0">Phone number</p>
         <p class="text-left">{{friendsData.handphone}}</p>
@@ -23,7 +28,7 @@
           </div>
         </div>
       <!-- Detail Info -->
-      <div style="height:45vh;overflow-y:scroll" class="hideScroll">
+      <div style="height:35vh;overflow-y:scroll" class="hideScroll">
         <div v-if="clickedType === 'location'">
           <GoogleMapMaps :center="{lat: Number(friendsData.location.split(',')[0]), lng:Number(friendsData.location.split(',')[1])}" :zoom="15"
             map-type-id="terrain" style="width: 300px; height: 300px" class="img-fluid">

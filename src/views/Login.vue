@@ -8,7 +8,7 @@
           <div class="card-body">
             <h4 class="text-main text-center my-3">Login</h4>
             <p class="mt-4">Hi, Welcome Back!</p>
-            <form @submit.prevent="login()" action="" class="my-4">
+            <form @submit.prevent="login()" action="" class="mt-4">
               <div class="form-group mb-4">
                 <label class="text-secondary">Email</label>
                 <input v-model="holderLogin.email" type="email"  autocomplete="email" class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
@@ -25,6 +25,7 @@
               </div>
               <button class="btn btn-main w-100 font-weight-bold my-3"
                 style="border-radius:50px;height:60px">Login</button>
+              </form>
               <div class="row text-center text-secondary">
                 <div class="col-4 my-auto">
                   <hr style="height:1.5px;border:none;color:#6C757D;background-color:#6C757D;">
@@ -36,11 +37,10 @@
                   <hr style="height:1.5px;border:none;color:#6C757D;background-color:#6C757D;">
                 </div>
               </div>
-              <button class="btn btn-sub w-100 font-weight-bold my-3" style="border-radius:50px;height:60px">
+              <button class="btn btn-sub w-100 font-weight-bold my-3" @click="swalAlert('Coming Soon', 'You will be able to Sign-in with your google account', 'info')" style="border-radius:50px;height:60px">
                 <b-icon-google></b-icon-google> Google
               </button>
               <p class="text-center">Don’t have an account? <router-link to="/register" class="text-main ">Sign Up</router-link></p>
-            </form>
           </div>
         </div>
       </div>
