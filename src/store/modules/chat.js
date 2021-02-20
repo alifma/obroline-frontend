@@ -75,7 +75,6 @@ const moduleChat = {
     // Notif New Chat
     newChatRT (context) {
       context.state.socket.on('res-new-chat', (response) => {
-        console.log(response)
         context.state.Toast.fire({
           icon: 'info',
           title: `${response.from}: ${response.message}`

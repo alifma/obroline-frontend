@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <div class="row px-0 mx-0">
+    <!-- For Web -->
+   <div class="d-none d-lg-block d-md-block">
+      <div class="row px-0 mx-0">
       <div class="col-12 col-md-4 col-lg-3 px-0 bg-warning" style="height:100vh">
         <ListUser />
       </div>
@@ -8,12 +10,18 @@
         <ListChat />
       </div>
     </div>
+   </div>
+    <!-- For Handphone -->
+    <div class="d-block d-lg-none d-md-none">
+      <mListUser />
+    </div>
   </div>
 </template>
 
 <script>
 import ListUser from '../components/ListUser'
 import ListChat from '../components/ListChat'
+import mListUser from '../components/mListUser'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Home',
@@ -26,6 +34,7 @@ export default {
   },
   components: {
     ListUser,
+    mListUser,
     ListChat
   },
   computed: {
