@@ -14,6 +14,10 @@ html {
   font-family: 'Rubik', sans-serif !important;
 }
 
+.font-rubik {
+  font-family: 'Rubik', sans-serif !important;
+}
+
 .text-main {
   color: var(--main-theme);
 }

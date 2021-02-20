@@ -13,18 +13,24 @@
       <div class="my-auto" style="height:10vh">
         <div class="row no-gutters" style="height:min-content">
           <div class="col-md-1 text-center my-auto">
-            <img :src="`${webURL}/img/${target.image}`" style="heigth:8vh;width:8vh" class="img-fluid" alt="...">
+            <img :src="`${webURL}/img/${target.image}`" @click="getFriendsData()"  style="heigth:8vh;width:8vh" class="img-fluid" alt="...">
           </div>
           <div class="col-md-11">
             <div class="p-1">
-              <p @click="getFriendsData()" class="mb-0 text-dark card-title mb-0 font-weight-bold">{{target.name}}</p>
+              <!-- <h4 id="popover-button-event" variant="primary" class="d-inline-block text-main float-right text-right h-100"><i class="fas fa-align-left"></i></h4>
+        <b-popover ref="popover" placement="right" class="btn-main btn" target="popover-button-event">
+          <template #title class="text-main">Options</template>
+          <router-link to="/profile" class="font-weight-bold font-rubik text-main">Profile</router-link>
+          <p @click="logout()" class="font-weight-bold font-rubik text-main">Logout</p>
+        </b-popover> -->
+              <p class="mb-0 text-dark card-title mb-0 font-weight-bold">{{target.name}}</p>
               <p class="card-text mb-0 text-main">{{target.socketId === null ? 'Offline' : 'Online'}}</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="card-body hideScroll" style="height:75vh;overflow-y:scroll">
-        <div v-for="(item, index) in chatList" :key="index" class="w-100">
+      <ul class="card-body hideScroll list-group" style="height:75vh;overflow-y:scroll" id="container">
+        <li v-for="(item, index) in chatList" :key="index" class="w-100">
           <!-- <p v-if="item.senderName != loginUserData.name"><b>{{item.senderName}} : </b> {{item.message}}</p> -->
           <div v-if="item.senderName != loginUserData.name" class="text-left w-50">
             <p class="btn btn-main mt-1 mb-0 text-justify " style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-bottom-right-radius:15px; max-width:100%; overflow-wrap: break-word">{{item.message}}</p>
@@ -33,13 +39,13 @@
           <div v-else class="text-right">
             <p class="btn mb-0 my-1 text-justify" style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;max-width:50%; overflow-wrap: break-word">{{item.message}}</p>
           </div>
-        </div>
-      </div>
+        </li>
+      </ul>
       <div class="card-footer text-center" style="height:15vh">
         <form @submit.prevent="sendChat()" class="w-100 form-inline">
           <div class="row w-100" >
             <div class="col-9 col-lg-9 col-md-8">
-            <input v-model="message" class="form-control w-100" type="text" placeholder="Type your message ...">
+            <input v-model="message" class="form-control w-100" type="text" ref="inputChat" placeholder="Type your message ...">
             </div>
             <div class="col-3 col-lg-3 col-md-4 my-auto">
               <div class="d-flex-column text-main justify-content-between">
@@ -92,6 +98,7 @@ export default {
         msg: this.message
       }
       this.actionSendChat(data)
+      this.scrollToEnd()
       this.message = ''
     },
     getFriendsData () {
@@ -100,7 +107,16 @@ export default {
     },
     comingSoon (msg) {
       this.swalAlert('Comming Soon', msg, 'info')
+    },
+    scrollToEnd () {
+      // scroll to the start of the last message
+      // this.$el.scrollTop = this.$el.lastElementChild.offsetTop
+      const containerMessage = this.$el.querySelector('#container')
+      containerMessage.scrollTop = containerMessage.scrollHeight
     }
+  },
+  updated () {
+    this.$nextTick(() => this.scrollToEnd())
   },
   mounted () {
   }

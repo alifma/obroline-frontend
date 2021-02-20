@@ -63,7 +63,7 @@ const moduleAuth = {
     },
     updateUser (context, data) {
       return new Promise((resolve, reject) => {
-        axios.patch(`${context.rootState.apiURL}/user/${data.id}`, data.fd)
+        axios.patch(`${context.rootState.apiURL}/user/${data.id}`, data.fd, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             resolve(response)
           })
@@ -74,7 +74,7 @@ const moduleAuth = {
     },
     getDetailUser (context, id) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.rootState.apiURL}/user/${id}`)
+        axios.get(`${context.rootState.apiURL}/user/${id}`, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             context.commit('setLoginData', response.data.data[0])
             resolve(response)
@@ -86,7 +86,7 @@ const moduleAuth = {
     },
     getFriendsData (context, id) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.rootState.apiURL}/user/${id}`)
+        axios.get(`${context.rootState.apiURL}/user/${id}`, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             let responseData = response.data.data[0]
             const isFriends = context.rootState.chat.userList.filter((i) => {
