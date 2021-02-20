@@ -121,16 +121,28 @@ export default {
       this.getListChat(data)
     },
     logout () {
-      this.actionLogout()
-        .then((response) => {
-          this.swalAlert('Logout Success', 'You Are Logged Out', 'success')
-          this.emptyChat()
-          this.cleanSession()
-          this.$router.push('/login')
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      this.$swal({
+        title: 'Logout',
+        text: 'Area you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#7E98DF',
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.value) {
+          this.actionLogout()
+            .then((response) => {
+              this.swalAlert('Logout Success', 'You Are Logged Out', 'success')
+              this.emptyChat()
+              this.cleanSession()
+              this.$router.push('/login')
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        }
+      })
     },
     searchByName () {
       const data = {

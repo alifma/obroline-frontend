@@ -8,11 +8,6 @@
           <router-link to="/profile" class="h4 d-inline-block font-weight-bold text-main">Obroline</router-link>
           <h4 @click="logout()" id="popover-button-event2" variant="primary"
             class="d-inline-block text-main float-right text-right h-100"><i class="fas fa-align-left"></i></h4>
-          <b-popover ref="popover" placement="left" class="btn-main btn" target="popover-button-event2">
-            <template #title class="text-main">Options</template>
-            <router-link to="/profile" class="font-weight-bold font-rubik text-main">Profile</router-link>
-            <p @click="logout()" class="font-weight-bold font-rubik text-main">Logout</p>
-          </b-popover>
         </div>
         <!-- SearchBar -->
         <div class="mt-2">
@@ -44,7 +39,7 @@
             class="list-group-item border-0 py-1 px-1">
             <div class="row no-gutters">
               <div class="col-md-3 col-3 col-lg-3 my-auto">
-                <img :src="`${webURL}/img/${item.image}`" class="card-img" alt="...">
+                <img :src="`${webURL}/img/${item.image}`" class="card-img" style="border-radius:18px" alt="...">
               </div>
               <div class="col-md-9 col-9 col-lg-3">
                 <div class="card-body">
@@ -63,7 +58,7 @@
             class="list-group-item border-0 py-1 px-1">
             <div class="row no-gutters">
               <div class="col-md-3 col-3 col-lg-3 my-auto">
-                <img :src="`${webURL}/img/${item.image}`" class="card-img" alt="...">
+                <img :src="`${webURL}/img/${item.image}`" class="card-img" style="border-radius:18px" alt="...">
               </div>
               <div class="col-md-9 col-9 col-lg-3">
                 <div class="card-body">
@@ -206,16 +201,28 @@ export default {
       this.getListChat(data)
     },
     logout () {
-      this.actionLogout()
-        .then((response) => {
-          this.swalAlert('Logout Success', 'You Are Logged Out', 'success')
-          this.emptyChat()
-          this.cleanSession()
-          this.$router.push('/login')
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      this.$swal({
+        title: 'Logout',
+        text: 'Area you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#7E98DF',
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.value) {
+          this.actionLogout()
+            .then((response) => {
+              this.swalAlert('Logout Success', 'You Are Logged Out', 'success')
+              this.emptyChat()
+              this.cleanSession()
+              this.$router.push('/login')
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        }
+      })
     },
     searchByName () {
       const data = {

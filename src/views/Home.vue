@@ -3,7 +3,7 @@
     <!-- For Web -->
    <div class="d-none d-lg-block d-md-block">
       <div class="row px-0 mx-0">
-      <div class="col-12 col-md-4 col-lg-3 px-0 bg-warning" style="height:100vh">
+      <div class="col-12 col-md-4 col-lg-3 px-0" style="height:100vh">
         <ListUser />
       </div>
       <div class="col-12 col-md-8 col-lg-9 px-0" style="height:100vh">
