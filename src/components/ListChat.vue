@@ -34,10 +34,11 @@
           <!-- <p v-if="item.senderName != loginUserData.name"><b>{{item.senderName}} : </b> {{item.message}}</p> -->
           <div v-if="item.senderName != loginUserData.name" class="text-left w-50">
             <p class="btn btn-main mt-1 mb-0 text-justify " style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-bottom-right-radius:15px; max-width:100%; overflow-wrap: break-word">{{item.message}}</p>
-            <p class="text-left btn text-secondary w-100">{{new Date(item.created_at).toLocaleTimeString()}}</p>
+            <small class="text-left py-0 btn text-secondary w-100" style="font-size:12px">{{new Date(item.created_at).toLocaleTimeString()}}</small>
           </div>
           <div v-else class="text-right">
-            <p class="btn mb-0 my-1 text-justify" style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;max-width:50%; overflow-wrap: break-word">{{item.message}}</p>
+            <p class="btn mb-0 my-0 py-0 text-justify" style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;max-width:50%; overflow-wrap: break-word">{{item.message}}</p>
+            <small class="text-right py-0 btn text-secondary w-100" style="font-size:12px">{{new Date(item.created_at).toLocaleTimeString()}}</small>
           </div>
         </li>
       </ul>

@@ -42,7 +42,8 @@ export default {
       getListUser: 'chat/getListUsers',
       connected: 'chat/connected',
       getUser: 'auth/getDetailUser',
-      getListContactRT: 'chat/getListContactRT'
+      getListContactRT: 'chat/getListContactRT',
+      newChatRT: 'chat/newChatRT'
     }),
     getUserData () {
       this.getUser(this.id)
@@ -63,6 +64,7 @@ export default {
   mounted () {
     this.getListContactRT()
     this.getUserData()
+    this.newChatRT()
   }
 }
 </script>

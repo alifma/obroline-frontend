@@ -1,5 +1,6 @@
 // import axios from 'axios'
 import io from 'socket.io-client'
+import Swal from 'sweetalert2'
 const moduleChat = {
   namespaced: true,
   state: () => {
@@ -13,7 +14,14 @@ const moduleChat = {
         name: '',
         image: 'default.png',
         socketId: ''
-      }
+      },
+      Toast: Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      })
     }
   },
   mutations: {
@@ -62,6 +70,16 @@ const moduleChat = {
     getListContactRT (context) {
       context.state.socket.on('res-get-list-users', (response) => {
         context.commit('setUserList', response)
+      })
+    },
+    // Notif New Chat
+    newChatRT (context) {
+      context.state.socket.on('res-new-chat', (response) => {
+        console.log(response)
+        context.state.Toast.fire({
+          icon: 'info',
+          title: `${response.from}: ${response.message}`
+        })
       })
     },
     // Ambil Daftar Chat
