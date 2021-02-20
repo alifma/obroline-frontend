@@ -2,13 +2,13 @@
   <div style="height:100vh">
     <!-- List User -->
     <div v-if="toggleChat === false">
-      <div class="card-body" style="height:22%">
+      <div class="card-body" style="height:22vh">
         <!-- Title -->
         <div>
           <router-link to="/profile" class="h4 d-inline-block font-weight-bold text-main">Obroline</router-link>
-          <h4 @click="logout()" id="popover-button-event" variant="primary"
+          <h4 @click="logout()" id="popover-button-event2" variant="primary"
             class="d-inline-block text-main float-right text-right h-100"><i class="fas fa-align-left"></i></h4>
-          <b-popover ref="popover" placement="left" class="btn-main btn" target="popover-button-event">
+          <b-popover ref="popover" placement="left" class="btn-main btn" target="popover-button-event2">
             <template #title class="text-main">Options</template>
             <router-link to="/profile" class="font-weight-bold font-rubik text-main">Profile</router-link>
             <p @click="logout()" class="font-weight-bold font-rubik text-main">Logout</p>
@@ -36,7 +36,7 @@
           </label>
         </div>
       </div>
-      <div class="card-body" style="height:78%">
+      <div class="card-body" style="height:78vh">
         <!-- Contact List -->
         <ul v-if="searchName.split('').length < 1" class="list-group h-100 hideScroll" style="overflow-y:scroll">
           <li v-for="(item, index) in userList" :key="index"

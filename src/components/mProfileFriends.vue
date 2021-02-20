@@ -11,8 +11,6 @@
         <img :src="`${webURL}/img/${friendsData.image}`"  class="img-fluid w-25 my-4" alt="">
         <br>
        <div id="friendship" class="text-left">
-          <!-- <p v-if="friendsData.isfriends === false" class="text-left mb-0 btn btn-sm font-weight-bold btn-warning" style="border-radius:25px"><i class="fas fa-plus"></i> Add</p> -->
-          <!-- <p v-else class="text-left mb-0 btn btn-sm font-weight-bold btn-warning disabled" style="border-radius:25px">Friends</p> -->
         <h5 v-if="friendsData.isfriends === false" class="text-left font-weight-bold mt-3 d-inline-block">{{friendsData.name}} <span @click="addFriends(friendsData.id, friendsData.roomId)" class="badge badge-warning"><i class="fas fa-plus"></i> Add</span></h5>
         <h5 v-else class="text-left font-weight-bold mt-3 d-inline-block">{{friendsData.name}} <span @click="deleteFriends(friendsData.id, friendsData.roomId)" class="badge badge-warning">Friends</span></h5>
        </div>

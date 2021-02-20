@@ -6,8 +6,12 @@ const moduleAuth = {
       token: localStorage.getItem('token') || null,
       id: localStorage.getItem('id') || null,
       roomId: localStorage.getItem('roomId') || null,
-      loginData: {},
-      friendsData: {}
+      loginData: {
+        location: '0,0'
+      },
+      friendsData: {
+        location: '0,0'
+      }
     }
   },
   mutations: {
