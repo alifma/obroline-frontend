@@ -3,9 +3,9 @@ const moduleAuth = {
   namespaced: true,
   state: () => {
     return {
-      token: localStorage.getItem('token'),
-      id: localStorage.getItem('id'),
-      roomId: localStorage.getItem('roomId'),
+      token: localStorage.getItem('token') || null,
+      id: localStorage.getItem('id') || null,
+      roomId: localStorage.getItem('roomId') || null,
       loginData: {},
       friendsData: {}
     }
@@ -30,7 +30,6 @@ const moduleAuth = {
               localStorage.setItem('token', response.data.pagination.token)
               localStorage.setItem('id', response.data.pagination.user.id)
               localStorage.setItem('roomId', response.data.pagination.user.roomId)
-              localStorage.setItem('userData', response.data.pagination.user)
               context.commit('setToken', response.data.pagination.token)
               context.commit('setLoginData', response.data.pagination.user)
               resolve(response.data)
@@ -114,6 +113,7 @@ const moduleAuth = {
     }
   },
   getters: {
+    token: state => state.token,
     dataLogin: state => state.loginData,
     dataFriends: state => state.friendsData,
     loginId: state => state.id,
