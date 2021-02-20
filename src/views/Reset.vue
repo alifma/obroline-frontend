@@ -8,7 +8,7 @@
           <div class="card-body">
             <router-link to="/login" class="float-left font-weight-bold d-inline-block mt-3 text-main mb-0"> <i class="fas fa-angle-left"></i> </router-link>
             <h4 class="text-main text-center my-3">Forgot Password</h4>
-            <p class="mt-4">You’ll get messages soon on your e-mail</p>
+            <p class="mt-4">You’ll get messages soon on your email</p>
             <form @submit.prevent="reset()" action="" class="my-4">
               <div class="form-group mb-4">
                 <label class="text-secondary">Email</label>
@@ -39,7 +39,9 @@ export default {
   },
   methods: {
     reset () {
+      this.$router.push('/login')
       this.swalAlert('Please Check Your Email', `Verification Email has been sent to ${this.email}`, 'success')
+      this.email = ''
     }
   }
 }

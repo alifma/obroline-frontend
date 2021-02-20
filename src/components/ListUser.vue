@@ -25,7 +25,7 @@
         </div>
       </div>
       <!-- Contact Type -->
-      <div class="btn-group btn-group-toggle w-100" >
+      <div class="btn-group btn-group-toggle w-100 text-center hideScroll" style="overflow-x:scroll" >
         <label v-for="(item, index) in contactType" :key="index" class="btn btn-main font-weight-bolder mx-1"
           style="border-radius:25px">
           <input type="radio"> {{item.text}}
