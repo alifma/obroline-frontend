@@ -14,7 +14,7 @@
           <!-- <p v-if="friendsData.isfriends === false" class="text-left mb-0 btn btn-sm font-weight-bold btn-warning" style="border-radius:25px"><i class="fas fa-plus"></i> Add</p> -->
           <!-- <p v-else class="text-left mb-0 btn btn-sm font-weight-bold btn-warning disabled" style="border-radius:25px">Friends</p> -->
         <h5 v-if="friendsData.isfriends === false" class="text-left font-weight-bold mt-3 d-inline-block">{{friendsData.name}} <span @click="addFriends(friendsData.id, friendsData.roomId)" class="badge badge-warning"><i class="fas fa-plus"></i> Add</span></h5>
-        <h5 v-else class="text-left font-weight-bold mt-3 d-inline-block">{{friendsData.name}} <span class="badge badge-warning">Friends</span></h5>
+        <h5 v-else class="text-left font-weight-bold mt-3 d-inline-block">{{friendsData.name}} <span @click="deleteFriends(friendsData.id, friendsData.roomId)" class="badge badge-warning">Friends</span></h5>
        </div>
         <p class="text-left">Online</p>
         <p class="text-left font-weight-bold mb-0">Phone number</p>
@@ -107,7 +107,8 @@ export default {
       actionUpdate: 'auth/updateUser',
       getUserProfile: 'auth/getDetailUser',
       actionFriendsProfile: 'auth/getFriendsData',
-      actionAdd: 'chat/addFriends'
+      actionAdd: 'chat/addFriends',
+      actionDelete: 'chat/deleteFriends'
     }),
     comingSoon (msg) {
       this.swalAlert('Comming Soon', msg, 'info')
@@ -127,6 +128,24 @@ export default {
         .then((res) => {
           this.actionFriendsProfile(this.friendsData.id)
           this.swalAlert('Add Success', 'You are now Friends', 'success')
+          this.$router.push('/')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    deleteFriends (id, roomId) {
+      const data = {
+        userId: Number(this.id),
+        userRoomId: Number(this.roomId),
+        targetId: id,
+        status: 'friends',
+        targetRoomId: roomId
+      }
+      this.actionDelete(data)
+        .then((res) => {
+          this.actionFriendsProfile(this.friendsData.id)
+          this.swalAlert('Friendship Removed', 'You are can now be friends', 'success')
           this.$router.push('/')
         })
         .catch((err) => {

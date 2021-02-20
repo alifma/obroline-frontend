@@ -84,6 +84,9 @@ const moduleChat = {
     },
     addFriends (context, data) {
       context.state.socket.emit('add-friends', data)
+    },
+    deleteFriends (context, data) {
+      context.state.socket.emit('delete-friends', data)
     }
   },
   getters: {
