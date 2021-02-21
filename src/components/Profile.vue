@@ -18,26 +18,25 @@
         <input type="file" class="form-control w-100 p-1" @change="processFile($event)" >
         <small>Profile Picture</small>
         <hr>
-        <!-- <p class="mb-0">{{loginUserData.handphone}}</p> -->
-        <input type="text" v-model="holderEdit.handphone" class="p form-control w-100" :placeholder="loginUserData.handphone">
-        <small>Handphone</small>
-        <hr>
-        <!-- <p class="font-weight-bold mb-1">{{loginUserData.username}}</p> -->
         <input type="text" v-model="holderEdit.username" class="font-weight-bold form-control w-100" :placeholder="loginUserData.username">
         <small>Username</small>
         <hr>
         <input type="text" v-model="holderEdit.name" class="font-weight-bold form-control w-100" :placeholder="loginUserData.name">
         <small>Full Name</small>
         <hr>
-        <!-- <p class="font-weight-bold mb-1 text-justify">{{loginUserData.bio}}</p> -->
+        <input type="email" v-model="holderEdit.email" class="font-weight-bold form-control w-100" :placeholder="loginUserData.email">
+        <small>Email</small>
+        <hr>
+        <input type="text" v-model="holderEdit.handphone" class="p form-control w-100" :placeholder="loginUserData.handphone">
+        <small>Handphone</small>
+        <hr>
         <input type="text" v-model="holderEdit.bio" class="font-weight-bold form-control text-justify w-100" :placeholder="loginUserData.bio">
         <small>Bio</small>
         <hr>
-        <!-- <p class="font-weight-bold mb-1 text-justify">{{loginUserData.bio}}</p> -->
         <input type="text" v-model="holderEdit.location" class="font-weight-bold form-control text-justify w-100" :placeholder="loginUserData.location">
         <small>Location</small>
         <hr>
-        <button class="btn btn-main w-100 mb-4" type="submit">Update</button>
+        <button class="btn btn-main w-100 mb-4" style="border-radius:18px" type="submit">Update</button>
       </form>
       </div>
     </div>
@@ -115,7 +114,8 @@ export default {
         username: '',
         name: '',
         bio: '',
-        location: ''
+        location: '',
+        email: ''
       }
     }
   },
@@ -147,6 +147,7 @@ export default {
       this.holderEdit.username = this.loginUserData.username
       this.holderEdit.name = this.loginUserData.name
       this.holderEdit.bio = this.loginUserData.bio
+      this.holderEdit.email = this.loginUserData.email
       this.holderEdit.location = this.loginUserData.location
     },
     processFile (el) {
@@ -161,6 +162,7 @@ export default {
       fd.append('name', this.holderEdit.name)
       fd.append('bio', this.holderEdit.bio)
       fd.append('location', this.holderEdit.location)
+      fd.append('email', this.holderEdit.email)
       const fixData = {
         id: this.holderEdit.id,
         fd
