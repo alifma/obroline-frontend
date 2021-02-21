@@ -98,7 +98,6 @@ import { obrolinemixin } from '../helper/mixin'
 import * as VueGoogleMaps from 'vue2-google-maps'
 export default {
   mixins: [obrolinemixin],
-  Name: 'Profile',
   data () {
     return {
       id: localStorage.getItem('id'),

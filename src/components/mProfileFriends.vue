@@ -77,7 +77,6 @@ import { obrolinemixin } from '../helper/mixin'
 import * as VueGoogleMaps from 'vue2-google-maps'
 export default {
   mixins: [obrolinemixin],
-  Name: 'mFriendsProfile',
   data () {
     return {
       detailFriends: {},

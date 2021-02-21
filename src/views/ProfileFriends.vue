@@ -24,7 +24,6 @@ import mProfileFriends from '../components/mProfileFriends'
 import ListChat from '../components/ListChat'
 
 export default {
-  name: 'ProfileFriends',
   data () {
     return {
     }

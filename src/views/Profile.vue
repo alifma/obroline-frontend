@@ -24,7 +24,6 @@ import mProfile from '../components/mProfile'
 import ListChat from '../components/ListChat'
 
 export default {
-  name: 'Profile',
   data () {
     return {
     }
