@@ -34,7 +34,7 @@
         <li v-for="(item, index) in chatList" :key="index" class="w-100">
           <div v-if="item.senderName != loginUserData.name" class="w-50">
               <img style="width:50px;border-radius:15px" :src="`${webURL}/img/${target.image}`" alt=""><p class="btn ml-1 btn-main mt-1 mb-0 text-justify " style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-bottom-right-radius:15px; max-width:100%; overflow-wrap: break-word">{{item.message}}</p>
-            <small class="text-left py-0 btn text-secondary w-100" style="font-size:12px">{{new Date(item.created_at).toLocaleTimeString()}}</small>
+            <small class="text-left py-0 btn text-secondary w-100" style="font-size:12px">{{new Date(item.created_at).toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'})}}</small>
           </div>
           <div v-else class="w-100 text-right">
             <p class="btn mb-0 my-0 py-0 text-justify"
@@ -42,7 +42,7 @@
               {{item.message}}</p>
               <img style="width:50px;border-radius:15px" :src="`${webURL}/img/${loginUserData.image}`" alt="">
             <small class="text-right py-0 btn text-secondary w-100"
-              style="font-size:12px">{{new Date(item.created_at).toLocaleTimeString()}}</small>
+              style="font-size:12px">{{new Date(item.created_at).toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'})}}</small>
           </div>
         </li>
       </ul>

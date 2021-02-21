@@ -42,10 +42,12 @@
                 <img :src="`${webURL}/img/${item.image}`" class="card-img" style="border-radius:18px" alt="...">
               </div>
               <div class="col-md-9 col-9 col-lg-3">
-                <div class="card-body">
-                  <p class="card-title text-right mb-0 font-weight-light float-right">24:00</p>
+                <div class="card-body"><p class="card-title text-right mb-0 font-weight-light float-right">{{new Date(item.created_at).toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'})}}</p>
                   <p class="mb-0 card-title mb-0 font-weight-bold">{{item.name}}</p>
-                  <p class="card-text mb-0 text-main">Last Chat</p>
+                  <div v-if="item.message !== null">
+                    <p v-if="item.senderId === item.id" class="card-text mb-0 text-main">{{item.message || '-'}}</p>
+                    <p v-else class="card-text mb-0 text-main">You : {{item.message || '-'}}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -62,9 +64,9 @@
               </div>
               <div class="col-md-9 col-9 col-lg-3">
                 <div class="card-body">
-                  <p class="card-title text-right mb-0 font-weight-light float-right">24:00</p>
+                  <!-- <p class="card-title text-right mb-0 font-weight-light float-right">24:00</p> -->
                   <p class="mb-0 card-title mb-0 font-weight-bold">{{item.name}}</p>
-                  <p class="card-text mb-0 text-main">Last Chat</p>
+                  <!-- <p class="card-text mb-0 text-main">Last Chat</p> -->
                 </div>
               </div>
             </div>
@@ -106,14 +108,14 @@
               style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-bottom-right-radius:15px; max-width:100%; overflow-wrap: break-word">
               {{item.message}}</p>
             <small class="text-left py-0 btn text-secondary w-100"
-              style="font-size:12px">{{new Date(item.created_at).toLocaleTimeString()}}</small>
+              style="font-size:12px">{{new Date(item.created_at).toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'})}}</small>
           </div>
           <div v-else class="w-100 text-right">
             <p class="btn mb-0 my-0 py-0 text-justify"
               style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;overflow-wrap: break-word">
               {{item.message}}</p>
             <small class="text-right py-0 btn text-secondary w-100"
-              style="font-size:12px">{{new Date(item.created_at).toLocaleTimeString()}}</small>
+              style="font-size:12px">{{new Date(item.created_at).toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'})}}</small>
           </div>
         </li>
       </ul>

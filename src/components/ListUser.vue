@@ -43,9 +43,12 @@
               </div>
               <div class="col-md-9">
                 <div class="card-body">
-                  <p class="card-title text-right mb-0 font-weight-light float-right">24:00</p>
+                  <p class="card-title text-right mb-0 font-weight-light float-right">{{new Date(item.created_at).toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'})}}</p>
                   <p class="mb-0 card-title mb-0 font-weight-bold">{{item.name}}</p>
-                  <p class="card-text mb-0 text-main">Last Chat</p>
+                  <div v-if="item.message !== null">
+                    <p v-if="item.senderId === item.id" class="card-text mb-0 text-main">{{item.message || '-'}}</p>
+                    <p v-else class="card-text mb-0 text-main">You : {{item.message || '-'}}</p>
+                  </div>
                 </div>
             </div>
           </div>
@@ -61,9 +64,9 @@
               </div>
               <div class="col-md-9">
                 <div class="card-body">
-                  <p class="card-title text-right mb-0 font-weight-light float-right">24:00</p>
+                  <!-- <p class="card-title text-right mb-0 font-weight-light float-right">24:00</p> -->
                   <p class="mb-0 card-title mb-0 font-weight-bold">{{item.name}}</p>
-                  <p class="card-text mb-0 text-main">Last Chat</p>
+                  <!-- <p class="card-text mb-0 text-main">Last Chat</p> -->
                 </div>
             </div>
           </div>
