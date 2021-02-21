@@ -24,6 +24,7 @@
           </div>
         </div>
       </div>
+      <!-- End Searchbar -->
       <!-- Contact Type -->
       <div class="btn-group btn-group-toggle w-100 text-center hideScroll" style="overflow-x:scroll" >
         <label v-for="(item, index) in contactType" :key="index" class="btn btn-main font-weight-bolder mx-1"
@@ -31,9 +32,11 @@
           <input type="radio"> {{item.text}}
         </label>
       </div>
+      <!-- End Contact Type -->
     </div>
     <div class="card-body" style="height:78%">
       <!-- Contact List -->
+      <!-- If Gak lagi nyari -->
       <ul v-if="searchName.split('').length < 1" class="list-group h-100 hideScroll"  style="overflow-y:scroll">
         <li v-for="(item, index) in userList" :key="index" @click="getChatUser(item.id, item.name, item.image, item.socketId)"
           class="list-group-item border-0 py-1 px-1">
@@ -54,6 +57,7 @@
           </div>
         </li>
       </ul>
+      <!-- If Lagi Nyari -->
       <ul v-else class="list-group h-100 hideScroll"  style="overflow-y:scroll">
         <h5 >Search Result For {{searchName}}</h5>
           <li v-for="(item, index) in searchList" :key="index" @click="getChatUser(item.id, item.name, item.image, item.socketId)"
@@ -64,9 +68,7 @@
               </div>
               <div class="col-md-9">
                 <div class="card-body">
-                  <!-- <p class="card-title text-right mb-0 font-weight-light float-right">24:00</p> -->
                   <p class="mb-0 card-title mb-0 font-weight-bold">{{item.name}}</p>
-                  <!-- <p class="card-text mb-0 text-main">Last Chat</p> -->
                 </div>
             </div>
           </div>
@@ -80,6 +82,7 @@
 import { obrolinemixin } from '../helper/mixin'
 import { mapActions, mapGetters } from 'vuex'
 export default {
+  name: 'ListUser',
   mixins: [obrolinemixin],
   data () {
     return {
@@ -155,9 +158,6 @@ export default {
       }
       this.actionSearchName(data)
     }
-  },
-  mounted () {
   }
-
 }
 </script>

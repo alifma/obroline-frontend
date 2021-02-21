@@ -1,16 +1,16 @@
 <template>
   <div class="home">
     <!-- For Web -->
-   <div class="d-none d-lg-block d-md-block">
+    <div class="d-none d-lg-block d-md-block">
       <div class="row px-0 mx-0">
-      <div class="col-12 col-md-4 col-lg-3 px-0" style="height:100vh">
-        <ListUser />
-      </div>
-      <div class="col-12 col-md-8 col-lg-9 px-0" style="height:100vh">
-        <ListChat />
+        <div class="col-12 col-md-4 col-lg-3 px-0" style="height:100vh">
+          <ListUser />
+        </div>
+        <div class="col-12 col-md-8 col-lg-9 px-0" style="height:100vh">
+          <ListChat />
+        </div>
       </div>
     </div>
-   </div>
     <!-- For Handphone -->
     <div class="d-block d-lg-none d-md-none">
       <mListUser />

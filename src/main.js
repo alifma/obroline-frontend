@@ -16,8 +16,9 @@ import store from './store/index'
 //  Sweet Alert
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
-
+// SweetAlert2 Assign
 Vue.use(VueSweetalert2)
+// GoogleMaps API Key
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyDVXYD_PZhGajt2Bp103tnwWK8nDQ66J4o'

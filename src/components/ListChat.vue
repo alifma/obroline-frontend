@@ -1,5 +1,6 @@
 <template>
   <div style="height:100vh">
+    <!-- If no room are selected -->
     <div v-if="target.name === ''" class="text-center h-100">
       <table style="height: 100%;width:100%">
         <tbody>
@@ -9,7 +10,9 @@
         </tbody>
       </table>
     </div>
+    <!-- If Room are selected -->
     <div v-else class="h-100">
+      <!-- Headers -->
       <div class="my-auto" style="height:10vh">
         <table class="w-100 h-100">
           <tbody @click="getFriendsData()">
@@ -30,6 +33,8 @@
           </tbody>
         </table>
       </div>
+      <!-- End Headers -->
+      <!-- List Chat Container -->
       <ul class="card-body hideScroll list-group px-4" style="height:75vh;overflow-y:scroll;list-style:none;" id="container">
         <li v-for="(item, index) in chatList" :key="index" class="w-100">
           <div v-if="item.senderName != loginUserData.name" class="w-50">
@@ -46,6 +51,8 @@
           </div>
         </li>
       </ul>
+      <!-- End List Chat Container -->
+      <!-- Footer Input Text -->
       <div class="card-footer text-center" style="height:15vh">
         <form @submit.prevent="sendChat()" class="w-100 form-inline">
           <div class="row w-100" >
@@ -61,6 +68,7 @@
           </div>
         </form>
       </div>
+      <!-- End Footer Input Text -->
     </div>
   </div>
 </template>
@@ -69,8 +77,8 @@
 import { mapActions, mapGetters } from 'vuex'
 import { obrolinemixin } from '../helper/mixin'
 export default {
+  name: 'ListChat',
   mixins: [obrolinemixin],
-  name: 'Home',
   data () {
     return {
       targetId: 0,
@@ -104,26 +112,28 @@ export default {
       this.scrollToEnd()
       this.message = ''
     },
+    // Ambil data teman ke page details
     getFriendsData () {
       this.friendsDataAction(this.target.id)
       if (this.$route.name !== 'ProfileFriends') {
         this.$router.push('/friends')
       }
     },
+    // Alert Comming Soon Data
     comingSoon (msg) {
       this.swalAlert('Comming Soon', msg, 'info')
     },
+    // Auto Scroll to Bottom New Chat
     scrollToEnd () {
-      // scroll to the start of the last message
-      // this.$el.scrollTop = this.$el.lastElementChild.offsetTop
-      const containerMessage = this.$el.querySelector('#container')
-      containerMessage.scrollTop = containerMessage.scrollHeight
+      if (this.$el.querySelector('#container')) {
+        const containerMessage = this.$el.querySelector('#container')
+        containerMessage.scrollTop = containerMessage.scrollHeight
+      }
     }
   },
+  // Panggil fungsi scroll to end setiap ada pembaruan halaman ini
   updated () {
     this.$nextTick(() => this.scrollToEnd())
-  },
-  mounted () {
   }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div class="h-100" style="height:100vh">
+    <!-- If edited -->
     <div v-if="toggleEdit" class="card-body py-0">
       <div class="text-center pt-4" style="height:5vh">
         <h5 class="d-inline-block text-center text-main">Edit Profile</h5>
@@ -40,6 +41,8 @@
       </form>
       </div>
     </div>
+    <!-- End If Edited -->
+    <!-- If not Edited -->
     <div v-else class="card-body py-0">
       <div class="text-center pt-4" style="height:5vh">
         <h5 class="d-inline-block text-center text-main" >@{{loginUserData.username}}</h5>
@@ -85,6 +88,7 @@
         </table>
       </div>
     </div>
+    <!-- End If Not Edited -->
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <!-- Display on Web -->
     <div class="d-none d-lg-block d-md-block">
       <div class="row px-0 mx-0">
         <div class="col-12 col-md-4 col-lg-3 mx-0 px-0" style="height:100vh">
@@ -10,6 +11,7 @@
         </div>
       </div>
     </div>
+    <!-- Display on Phone -->
     <div class="d-block d-lg-none d-md-none">
       <mProfile />
     </div>
@@ -22,7 +24,7 @@ import mProfile from '../components/mProfile'
 import ListChat from '../components/ListChat'
 
 export default {
-  name: 'Home',
+  name: 'Profile',
   data () {
     return {
     }
@@ -31,10 +33,6 @@ export default {
     Profile,
     mProfile,
     ListChat
-  },
-  computed: {
-  },
-  methods: {
   }
 }
 </script>

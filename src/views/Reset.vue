@@ -6,13 +6,15 @@
       <div class="col-sm-12 col-md-8 col-lg-6 my-auto">
         <div class="card p-4 shadow" style="border-radius:25px">
           <div class="card-body">
-            <router-link to="/login" class="float-left font-weight-bold d-inline-block mt-3 text-main mb-0"> <i class="fas fa-angle-left"></i> </router-link>
+            <router-link to="/login" class="float-left font-weight-bold d-inline-block mt-3 text-main mb-0"> <i
+                class="fas fa-angle-left"></i> </router-link>
             <h4 class="text-main text-center my-3">Forgot Password</h4>
             <p class="mt-4">You’ll get messages soon on your email</p>
             <form @submit.prevent="reset()" action="" class="my-4">
               <div class="form-group mb-4">
                 <label class="text-secondary">Email</label>
-                <input required type="email" v-model="email" class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
+                <input required type="email" v-model="email"
+                  class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
                   style="border-bottom:2px solid black">
               </div>
               <button class="btn btn-main w-100 font-weight-bold my-3"
@@ -30,8 +32,8 @@
 <script>
 import { obrolinemixin } from '../helper/mixin'
 export default {
+  name: 'Reset',
   mixins: [obrolinemixin],
-  name: 'Signup',
   data () {
     return {
       email: ''
@@ -46,7 +48,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

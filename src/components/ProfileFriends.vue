@@ -2,38 +2,41 @@
   <div class="h-100" style="height:100vh">
     <div v-if="friendsData.username !== undefined" class="card-body py-0">
       <div class="text-center pt-4" style="height:5vh">
-        <h5 class="d-inline-block text-center text-main" >@{{friendsData.username}}</h5>
+        <h5 class="d-inline-block text-center text-main">@{{friendsData.username}}</h5>
         <router-link to="/" class="d-inline-block text-main float-left text-right h-100"><i
             class="fas fa-angle-left"></i></router-link>
       </div>
       <!-- Base Info -->
       <div class="text-center" style="height:50vh">
-        <img :src="`${webURL}/img/${friendsData.image}`"  class="img-fluid w-25 my-4" alt="">
+        <img :src="`${webURL}/img/${friendsData.image}`" class="img-fluid w-25 my-4" alt="">
         <br>
-       <div id="friendship" class="text-left">
-          <!-- <p v-if="friendsData.isfriends === false" class="text-left mb-0 btn btn-sm font-weight-bold btn-warning" style="border-radius:25px"><i class="fas fa-plus"></i> Add</p> -->
-          <!-- <p v-else class="text-left mb-0 btn btn-sm font-weight-bold btn-warning disabled" style="border-radius:25px">Friends</p> -->
-        <h5 v-if="friendsData.isfriends === false" class="text-left font-weight-bold mt-3 d-inline-block">{{friendsData.name}} <span @click="addFriends(friendsData.id, friendsData.roomId)" class="badge badge-warning"><i class="fas fa-plus"></i> Add</span></h5>
-        <h5 v-else class="text-left font-weight-bold mt-3 d-inline-block">{{friendsData.name}} <span @click="deleteFriends(friendsData.id, friendsData.roomId)" class="badge badge-warning">Friends</span></h5>
-       </div>
+        <div id="friendship" class="text-left">
+          <h5 v-if="friendsData.isfriends === false" class="text-left font-weight-bold mt-3 d-inline-block">
+            {{friendsData.name}} <span @click="addFriends(friendsData.id, friendsData.roomId)"
+              class="badge badge-warning"><i class="fas fa-plus"></i> Add</span></h5>
+          <h5 v-else class="text-left font-weight-bold mt-3 d-inline-block">{{friendsData.name}} <span
+              @click="deleteFriends(friendsData.id, friendsData.roomId)" class="badge badge-warning">Friends</span></h5>
+        </div>
         <p class="text-left">Online</p>
         <p class="text-left font-weight-bold mb-0">Phone number</p>
         <p class="text-left">{{friendsData.handphone}}</p>
       </div>
-        <div style="height:8vh">
-          <div class="btn-group btn-group-toggle w-100">
-            <label v-for="(item, index) in chatDataType" :key="index"
-              class="btn btn-sm btn-main font-weight-bolder mx-1" style="border-radius:25px">
-              <input @click="setClickedType(item.value)" type="radio"> {{item.text}}
-            </label>
-          </div>
+      <div style="height:8vh">
+        <div class="btn-group btn-group-toggle w-100">
+          <label v-for="(item, index) in chatDataType" :key="index" class="btn btn-sm btn-main font-weight-bolder mx-1"
+            style="border-radius:25px">
+            <input @click="setClickedType(item.value)" type="radio"> {{item.text}}
+          </label>
         </div>
+      </div>
       <!-- Detail Info -->
       <div style="height:35vh;overflow-y:scroll" class="hideScroll">
         <div v-if="clickedType === 'location'">
-          <GoogleMapMaps :center="{lat: Number(friendsData.location.split(',')[0]), lng:Number(friendsData.location.split(',')[1])}" :zoom="15"
-            map-type-id="terrain" style="width: 100%; height: 300px" class="img-fluid">
-            <GoogleMapMarker :position="{lat: Number(friendsData.location.split(',')[0]), lng:Number(friendsData.location.split(',')[1])}"
+          <GoogleMapMaps
+            :center="{lat: Number(friendsData.location.split(',')[0]), lng:Number(friendsData.location.split(',')[1])}"
+            :zoom="15" map-type-id="terrain" style="width: 100%; height: 300px" class="img-fluid">
+            <GoogleMapMarker
+              :position="{lat: Number(friendsData.location.split(',')[0]), lng:Number(friendsData.location.split(',')[1])}"
               :clickable="true" :draggable="false" @click="center=m.position"></GoogleMapMarker>
           </GoogleMapMaps>
         </div>
@@ -73,8 +76,8 @@ import { mapGetters, mapActions } from 'vuex'
 import { obrolinemixin } from '../helper/mixin'
 import * as VueGoogleMaps from 'vue2-google-maps'
 export default {
+  Name: 'ProfileFriends',
   mixins: [obrolinemixin],
-  Name: 'Profile',
   data () {
     return {
       detailFriends: {},
@@ -166,9 +169,6 @@ export default {
           console.log(err)
         })
     }
-  },
-  mounted () {
-    // this.getProfile()
   }
 }
 </script>

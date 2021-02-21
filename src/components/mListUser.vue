@@ -1,6 +1,6 @@
 <template>
   <div style="height:100vh">
-    <!-- List User -->
+    <!-- Start List User -->
     <div v-if="toggleChat === false">
       <div class="card-body" style="height:22vh">
         <!-- Title -->
@@ -33,6 +33,7 @@
       </div>
       <div class="card-body" style="height:78vh">
         <!-- Contact List -->
+        <!-- If gak lagi nyari -->
         <ul v-if="searchName.split('').length < 1" class="list-group h-100 hideScroll" style="overflow-y:scroll">
           <li v-for="(item, index) in userList" :key="index"
             @click="getChatUser(item.id, item.name, item.image, item.socketId)"
@@ -53,6 +54,7 @@
             </div>
           </li>
         </ul>
+        <!-- If Lagi Nyari -->
         <ul v-else class="list-group h-100 hideScroll" style="overflow-y:scroll">
           <h5>Search Result For {{searchName}}</h5>
           <li v-for="(item, index) in searchList" :key="index"
@@ -75,8 +77,10 @@
         </ul>
       </div>
     </div>
-    <!-- Chat Details -->
+    <!-- End List User -->
+    <!-- Start Chat List -->
     <div v-else class="h-100">
+      <!-- Header Chat-->
       <div class="my-auto" style="height:10vh">
         <table class="w-100 h-100">
           <tbody>
@@ -100,6 +104,8 @@
           </tbody>
         </table>
       </div>
+      <!-- End Header Chat -->
+      <!-- Start Chat List Container -->
       <ul class="card-body hideScroll list-group px-4" style="height:75vh;overflow-y:scroll;list-style:none;"
         id="container">
         <li v-for="(item, index) in chatList" :key="index" class="w-100">
@@ -119,6 +125,8 @@
           </div>
         </li>
       </ul>
+      <!-- End Chat List Container -->
+      <!-- Start Input Text -->
       <div class="card-footer text-center" style="height:15vh">
         <form @submit.prevent="sendChat()" class="w-100 form-inline">
           <div class="row w-100">
@@ -138,7 +146,9 @@
           </div>
         </form>
       </div>
+      <!-- End Chat List Input -->
     </div>
+    <!-- End Chat List  -->
     </div>
 </template>
 
@@ -158,10 +168,6 @@ export default {
       message: '',
       // Data Users
       type: 'important',
-      users: [
-        { name: 'Alif', id: 2 },
-        { name: 'Alif Juga', id: 1 }
-      ],
       contactType: [
         { text: 'All', value: '' },
         { text: 'Important', value: 'important' },
@@ -255,8 +261,6 @@ export default {
       this.swalAlert('Comming Soon', msg, 'info')
     },
     scrollToEnd () {
-      // scroll to the start of the last message
-      // this.$el.scrollTop = this.$el.lastElementChild.offsetTop
       if (this.$el.querySelector('#container')) {
         const containerMessage = this.$el.querySelector('#container')
         containerMessage.scrollTop = containerMessage.scrollHeight

@@ -11,12 +11,13 @@
             <form @submit.prevent="login()" action="" class="mt-4">
               <div class="form-group mb-4">
                 <label class="text-secondary">Email</label>
-                <input v-model="holderLogin.email" type="email"  autocomplete="email" class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
+                <input v-model="holderLogin.email" type="email" autocomplete="email"
+                  class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
                   style="border-bottom:2px solid black">
               </div>
               <div class="form-group mt-4">
                 <label class="text-secondary">Password</label>
-                <input v-model="holderLogin.password"  autocomplete="current-password" type="password" value="password"
+                <input v-model="holderLogin.password" autocomplete="current-password" type="password" value="password"
                   class="px-0 font-weight-bold form-control border-top-0 border-left-0 border-right-0"
                   style="border-bottom:2px solid black">
               </div>
@@ -25,22 +26,26 @@
               </div>
               <button class="btn btn-main w-100 font-weight-bold my-3"
                 style="border-radius:50px;height:60px">Login</button>
-              </form>
-              <div class="row text-center text-secondary">
-                <div class="col-4 my-auto">
-                  <hr style="height:1.5px;border:none;color:#6C757D;background-color:#6C757D;">
-                </div>
-                <div class="col-4 my-auto">
-                  <p class="mb-0 ">Login With</p>
-                </div>
-                <div class="col-4 my-auto">
-                  <hr style="height:1.5px;border:none;color:#6C757D;background-color:#6C757D;">
-                </div>
+            </form>
+            <div class="row text-center text-secondary">
+              <div class="col-4 my-auto">
+                <hr style="height:1.5px;border:none;color:#6C757D;background-color:#6C757D;">
               </div>
-              <button class="btn btn-sub w-100 font-weight-bold my-3" @click="swalAlert('Coming Soon', 'You will be able to Sign-in with your google account', 'info')" style="border-radius:50px;height:60px">
-                <b-icon-google></b-icon-google> Google
-              </button>
-              <p class="text-center">Don’t have an account? <router-link to="/register" class="text-main ">Sign Up</router-link></p>
+              <div class="col-4 my-auto">
+                <p class="mb-0 ">Login With</p>
+              </div>
+              <div class="col-4 my-auto">
+                <hr style="height:1.5px;border:none;color:#6C757D;background-color:#6C757D;">
+              </div>
+            </div>
+            <button class="btn btn-sub w-100 font-weight-bold my-3"
+              @click="swalAlert('Coming Soon', 'You will be able to Sign-in with your google account', 'info')"
+              style="border-radius:50px;height:60px">
+              <b-icon-google></b-icon-google> Google
+            </button>
+            <p class="text-center">Don’t have an account? <router-link to="/register" class="text-main ">Sign Up
+              </router-link>
+            </p>
           </div>
         </div>
       </div>
@@ -51,9 +56,10 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import { obrolinemixin } from '../helper/mixin'
 export default {
+  name: 'Login',
   mixins: [obrolinemixin],
   data () {
     return {
@@ -62,11 +68,6 @@ export default {
         password: ''
       }
     }
-  },
-  computed: {
-    ...mapGetters({
-      // userLogin: 'auth/dataLogin'
-    })
   },
   methods: {
     ...mapActions({
