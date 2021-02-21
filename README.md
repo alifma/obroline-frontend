@@ -4,13 +4,6 @@ The build version already included on [obroline-backend].
 ## Demo
 You can try demo of this application [here](http://52.91.116.102:4000)
 
-## Instalation
-1. Install Required NPM Packages 
-   > `npm install`
-2. Install [Backend Posvue](https://github.com/alifma/pos-backend)
-3. Start Application
-   > `npm run serve`
-  
 ## Installation
 1. Clone this repository
 2. Install Required NPM Packages 
@@ -31,6 +24,7 @@ You can try demo of this application [here](http://52.91.116.102:4000)
 - Online Status
 - Maps Location
 - Responsive
+
 ## NPM Packages Used
 - [Axios](https://www.npmjs.com/package/axios)
 - [Bootstrap](https://www.npmjs.com/package/bootstrap)
@@ -41,5 +35,15 @@ You can try demo of this application [here](http://52.91.116.102:4000)
 - [Vue-sweetalert2](https://www.npmjs.com/package/vue-sweetalert2)
 - [Vue2-google-maps](https://www.npmjs.com/package/vue2-google-maps)
 - [Vuex](https://www.npmjs.com/package/vuex)
+
 ## Branch Information
 > Main branch is the most stable version of this application
+
+## Screenshot
+
+### Web View
+<img src="https://i.ibb.co/Kb4fzmf/obroline-1.png">
+<img src="https://i.ibb.co/RPYNkqD/obroline-2.png">
+
+### Mobile View
+<p><img style="width:30%" src="https://i.ibb.co/GJhrJBM/obroline-4.png"><img style="width:30%" src="https://i.ibb.co/H2MBRSq/obroline-7.png"><img src="https://i.ibb.co/TgNxQTG/obroline-5.png" style="width:30%"></p>
