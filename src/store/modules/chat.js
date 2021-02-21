@@ -5,7 +5,7 @@ const moduleChat = {
   namespaced: true,
   state: () => {
     return {
-      socket: io('http://localhost:4000'),
+      socket: io(process.env.VUE_APP_WEB_URL ||'http://localhost:4000'),
       userList: [],
       searchList: [],
       chat: [],
