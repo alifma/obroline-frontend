@@ -95,7 +95,6 @@ const moduleChat = {
         context.commit('setChat', response)
       })
       context.state.socket.on('res-target-data', (responseTarget) => {
-        console.log(responseTarget)
         const targetData = {
           targetId: responseTarget.id,
           targetName: responseTarget.name,
