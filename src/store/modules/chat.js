@@ -72,6 +72,13 @@ const moduleChat = {
         context.commit('setUserList', response)
       })
     },
+    // // Refresh Target Data
+    // getTargetDataRT (context) {
+    //   console.log('terpanggil')
+    //   context.state.socket.on('res-target-data', (response) => {
+    //     console.log(response)
+    //   })
+    // },
     // Notif New Chat
     newChatRT (context) {
       context.state.socket.on('res-new-chat', (response) => {
@@ -86,6 +93,16 @@ const moduleChat = {
       context.state.socket.emit('get-list-chat', { senderId: data.senderId, targetId: data.targetId, roomId: data.roomId })
       context.state.socket.on('res-get-list-chat', (response) => {
         context.commit('setChat', response)
+      })
+      context.state.socket.on('res-target-data', (responseTarget) => {
+        console.log(responseTarget)
+        const targetData = {
+          targetId: responseTarget.id,
+          targetName: responseTarget.name,
+          image: responseTarget.image,
+          socketId: responseTarget.socketId
+        }
+        context.commit('setTarget', targetData)
       })
       context.commit('setTarget', { targetId: data.targetId, targetName: data.targetName, image: data.image, socketId: data.socketId })
     },

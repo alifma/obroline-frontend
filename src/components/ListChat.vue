@@ -101,6 +101,7 @@ export default {
       actionSendChat: 'chat/sendChat',
       actionDeleteChat: 'chat/deleteChat',
       friendsDataAction: 'auth/getFriendsData'
+      // actionTargetDataRT: 'chat/getTargetDataRT'
     }),
     // // Kirim Pesan
     sendChat () {
@@ -163,6 +164,9 @@ export default {
   // Panggil fungsi scroll to end setiap ada pembaruan halaman ini
   updated () {
     this.$nextTick(() => this.scrollToEnd())
+  },
+  mounted () {
+    // this.actionTargetDataRT()
   }
 }
 </script>
