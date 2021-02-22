@@ -37,7 +37,7 @@
       <!-- List Chat Container -->
       <ul class="card-body hideScroll list-group px-4" style="height:75vh;overflow-y:scroll;list-style:none;" id="container">
         <li v-for="(item, index) in chatList" :key="index" class="w-100">
-          <div v-if="item.senderName != loginUserData.name" class="w-50">
+          <div v-if="item.senderName != loginUserData.name" class="w-50" @click="deleteChat(item.id)">
               <img style="width:50px;border-radius:15px" :src="`${webURL}/img/${target.image}`" alt=""><p class="btn ml-1 btn-main mt-1 mb-0 text-justify " style="border-top-right-radius:15px;border-bottom-left-radius:15px;border-bottom-right-radius:15px; max-width:100%; overflow-wrap: break-word">{{item.message}}</p>
             <small class="text-left py-0 btn text-secondary w-100" style="font-size:12px">{{new Date(item.created_at).toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'})}}</small>
           </div>
@@ -99,6 +99,7 @@ export default {
   methods: {
     ...mapActions({
       actionSendChat: 'chat/sendChat',
+      actionDeleteChat: 'chat/deleteChat',
       friendsDataAction: 'auth/getFriendsData'
     }),
     // // Kirim Pesan
@@ -129,6 +130,34 @@ export default {
         const containerMessage = this.$el.querySelector('#container')
         containerMessage.scrollTop = containerMessage.scrollHeight
       }
+    },
+    // Delete Chat
+    deleteChat (id) {
+      const data = {
+        senderId: this.loginUserData.id,
+        targetId: this.target.id,
+        msg: this.message,
+        id
+      }
+      this.$swal({
+        title: 'Delete Chat',
+        text: 'Area you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#7E98DF',
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.value) {
+          this.actionDeleteChat(data)
+            .then((response) => {
+              this.swalAlert('Delete Chat Success', 'The Chat are deleted', 'success')
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        }
+      })
     }
   },
   // Panggil fungsi scroll to end setiap ada pembaruan halaman ini

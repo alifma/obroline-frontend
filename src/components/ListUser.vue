@@ -87,10 +87,6 @@ export default {
   data () {
     return {
       type: 'important',
-      users: [
-        { name: 'Alif', id: 2 },
-        { name: 'Alif Juga', id: 1 }
-      ],
       contactType: [
         { text: 'All', value: '' },
         { text: 'Important', value: 'important' },

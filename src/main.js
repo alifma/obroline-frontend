@@ -21,7 +21,7 @@ Vue.use(VueSweetalert2)
 // GoogleMaps API Key
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyDVXYD_PZhGajt2Bp103tnwWK8nDQ66J4o'
+    key: process.env.VUE_APP_GMAPS_API_KEY
   }
 })
 Vue.config.productionTip = false

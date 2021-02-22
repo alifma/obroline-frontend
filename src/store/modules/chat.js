@@ -104,6 +104,9 @@ const moduleChat = {
     },
     deleteFriends (context, data) {
       context.state.socket.emit('delete-friends', data)
+    },
+    deleteChat (context, data) {
+      context.state.socket.emit('delete-chat', data)
     }
   },
   getters: {
