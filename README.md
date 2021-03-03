@@ -1,8 +1,8 @@
 # Obroline-Frontend
 Repository for Frontend of RealTime Chatting Application built using VueJS.
-The build version already included on [obroline-backend].
+The build version already included [here](https://github.com/alifma/obroline-backend).
 ## Demo
-You can try demo of this application [here](http://52.91.116.102:4000)
+You can try demo of this application [here](http://obroline.alifma.com)
 
 ## Installation
 1. Clone this repository
@@ -47,3 +47,7 @@ You can try demo of this application [here](http://52.91.116.102:4000)
 
 ### Mobile View
 <p><img style="width:30%" src="https://i.ibb.co/GJhrJBM/obroline-4.png"><img style="width:30%" src="https://i.ibb.co/H2MBRSq/obroline-7.png"><img src="https://i.ibb.co/TgNxQTG/obroline-5.png" style="width:30%"></p>
+
+## Backend
+You can checkout Backend of Obroline application [here](https://github.com/alifma/obroline-backend).
+
